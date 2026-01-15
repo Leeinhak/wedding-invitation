@@ -1,50 +1,103 @@
+/**
+ * =============================================================================
+ * 모바일 청첩장 스타일시트
+ * =============================================================================
+ *
+ * 목차:
+ * 0) Base / Reset - 기본 스타일 초기화
+ * 1) Layout - 페이지 레이아웃 (모바일 카드 형태)
+ * 2) Utilities - 유틸리티 클래스
+ * 3) Family Tree - 양가 부모님/신랑신부 트리 구조
+ * 4) Hero / Cover - 메인 커버 섹션
+ * 5) Info Cards / Buttons - 카드 및 버튼 스타일
+ * 6) Calendar - 달력 스타일
+ * 7) Gallery - 사진 갤러리 그리드
+ * 8) Lightbox - 이미지 확대 모달
+ * 9) Map - 지도 영역
+ * 10) Account - 계좌정보 접기/펼치기
+ * 11) Guestbook - 방명록
+ * 12) Admin Section - 관리자 영역
+ * 13) YouTube Video - 영상 임베드
+ * 14) Footer - 푸터
+ */
+
 /* =========================
    0) Base / Reset
+   - 브라우저 기본 스타일 초기화
+   - 전역 폰트 및 색상 설정
 ========================= */
+
+/* 모든 요소에 border-box 적용 (패딩이 너비에 포함됨) */
 *, *::before, *::after { box-sizing: border-box; }
+
+/* html, body 높이 100% */
 html, body { height: 100%; }
+
 body {
   margin: 0;
+  /* 시스템 폰트 스택 - 각 OS에서 최적의 폰트 사용 */
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
-  color: #1f2937;
-  background: #f3f4f6;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  color: #1f2937;           /* 기본 텍스트 색상 (진한 회색) */
+  background: #f3f4f6;      /* 페이지 배경색 (연한 회색) */
+  line-height: 1.6;         /* 줄 간격 */
+  -webkit-font-smoothing: antialiased;    /* 맥에서 폰트 부드럽게 */
+  text-rendering: optimizeLegibility;     /* 텍스트 렌더링 최적화 */
 }
+
+/* 이미지 기본 설정 */
 img { max-width: 100%; display: block; }
+
+/* 링크 기본 스타일 제거 */
 a { color: inherit; text-decoration: none; }
+
+/* 버튼 기본 스타일 */
 button { font: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid rgba(59,130,246,.35); outline-offset: 2px; border-radius: 10px; }
+
+/* 포커스 표시 (키보드 접근성) */
+:focus-visible {
+  outline: 3px solid rgba(59,130,246,.35);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
 
 /* =========================
    1) Layout (Mobile-first)
-   - PC에서도 "모바일 카드"처럼 보이게 중앙 고정
+   - 모바일 우선 설계
+   - PC에서도 모바일 카드처럼 중앙에 고정
 ========================= */
 .page {
-  max-width: 520px;
-  margin: 0 auto;
-  background: #fff;
-  min-height: 100vh;
-  box-shadow: 0 10px 40px rgba(0,0,0,.12);
+  max-width: 520px;         /* 최대 너비 520px (모바일 카드 크기) */
+  margin: 0 auto;           /* 가로 중앙 정렬 */
+  background: #fff;         /* 흰색 배경 */
+  min-height: 100vh;        /* 최소 높이: 뷰포트 전체 */
+  box-shadow: 0 10px 40px rgba(0,0,0,.12);  /* 그림자 효과 */
 }
 
-/* PC에서는 페이지 배경 여백이 보이도록 */
+/* PC 화면 (860px 이상)에서 카드 형태로 표시 */
 @media (min-width: 860px) {
-  body { padding: 32px 0; }
-  .page { border-radius: 24px; overflow: hidden; }
+  body { padding: 32px 0; }                  /* 상하 여백 */
+  .page { border-radius: 24px; overflow: hidden; }  /* 둥근 모서리 */
 }
 
 /* =========================
    2) Utilities
+   - 재사용 가능한 유틸리티 클래스
 ========================= */
-.container { padding: 22px 18px; }
-.section { padding: 34px 0; border-top: 1px solid #eef2f7; }
-.section:first-child { border-top: 0; }
-.center { text-align: center; }
-.muted { color: #6b7280; }
-.kicker { letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: #9ca3af; }
+.container { padding: 22px 18px; }           /* 본문 컨테이너 패딩 */
+.section { padding: 34px 0; border-top: 1px solid #eef2f7; }  /* 섹션 구분선 */
+.section:first-child { border-top: 0; }      /* 첫 섹션은 구분선 제거 */
+.center { text-align: center; }              /* 텍스트 중앙 정렬 */
+.muted { color: #6b7280; }                   /* 흐린 텍스트 색상 */
 
+/* 섹션 상단 영문 라벨 */
+.kicker {
+  letter-spacing: .12em;    /* 자간 넓힘 */
+  text-transform: uppercase; /* 대문자 변환 */
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 제목 스타일 */
 .h1 {
   font-size: 28px;
   line-height: 1.25;
@@ -56,6 +109,8 @@ button { font: inherit; cursor: pointer; }
   margin: 0 0 14px;
   font-weight: 750;
 }
+
+/* 구분선 */
 .divider {
   width: 56px;
   height: 2px;
@@ -65,55 +120,161 @@ button { font: inherit; cursor: pointer; }
 }
 
 /* =========================
-   3) Hero / Cover
+   3) Family Tree
+   - 양가 부모님과 신랑/신부를 트리 구조로 표시
+========================= */
+.family-tree {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 2열 그리드 (신랑측/신부측) */
+  gap: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* 각 측면 (신랑측/신부측) 컨테이너 */
+.family-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 부모님 컨테이너 (가로 배치) */
+.parents {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* 부모님 개별 카드 */
+.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+}
+
+/* 부모님 프로필 사진 */
+.parent-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;        /* 원형 */
+  object-fit: cover;         /* 비율 유지하며 채우기 */
+  border: 1px solid #eef2f7;
+}
+
+/* 부모님 정보 텍스트 */
+.parent-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.parent-role {
+  font-size: 9px;
+  color: #9ca3af;
+}
+.parent-info b {
+  font-size: 12px;
+  color: #374151;
+}
+
+/* 부모님-신랑/신부 연결선 */
+.tree-line {
+  width: 1px;
+  height: 20px;
+  background: #d1d5db;
+  margin: 8px 0;
+}
+
+/* 신랑/신부 카드 */
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+  border-radius: 14px;
+}
+.person .role {
+  font-size: 10px;
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+.person .name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* =========================
+   4) Hero / Cover
+   - 메인 커버 섹션 (배경 이미지 + 신랑신부 이름)
 ========================= */
 .hero {
   position: relative;
-  min-height: 72vh;
+  min-height: 72vh;          /* 뷰포트 높이의 72% */
   display: grid;
-  place-items: end center;
+  place-items: end center;   /* 하단 중앙 정렬 */
   padding: 24px 18px;
   color: #0b1220;
   background: #faf7f2;
   overflow: hidden;
 }
-/* 배경 이미지 (원하시면 URL 교체) */
+
+/* 배경 이미지 (::before 가상 요소 사용) */
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0;                  /* top, right, bottom, left 모두 0 */
+  /* 그라데이션 + 배경 이미지 중첩 */
   background:
     linear-gradient(to top, rgba(255,255,255,.95), rgba(255,255,255,.35) 45%, rgba(0,0,0,.06)),
-    url("./main3.jpg");
+    url("./main3.jpg");      /* ⚠️ 실제 이미지 경로로 변경 필요 */
   background-size: cover;
   background-position: center;
-  transform: scale(1.02);
-  filter: saturate(1.02);
+  transform: scale(1.02);    /* 약간 확대 (움직임 효과용) */
+  filter: saturate(1.02);    /* 채도 약간 증가 */
 }
+
+/* 히어로 내부 컨텐츠 */
 .hero-inner {
-  position: relative;
+  position: relative;        /* ::before 위에 표시되도록 */
   width: 100%;
   max-width: 520px;
   text-align: center;
   padding-bottom: 10px;
 }
+
+/* 신랑/신부 이름 */
 .names {
   font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
 }
+
+/* 하트 아이콘 */
 .heart {
   display: inline-block;
   margin: 0 8px;
   transform: translateY(-1px);
   opacity: .85;
 }
+
+/* 날짜/장소 정보 */
 .hero-meta {
   margin-top: 10px;
   font-size: 14px;
   color: rgba(31,41,55,.85);
 }
+
+/* 스크롤 유도 아이콘 (마우스 모양) */
 .scroll-hint {
   position: relative;
   margin: 18px auto 0;
@@ -126,6 +287,8 @@ button { font: inherit; cursor: pointer; }
   padding-top: 8px;
   opacity: .75;
 }
+
+/* 스크롤 힌트 내부 점 (애니메이션) */
 .scroll-hint::after {
   content: "";
   width: 6px;
@@ -134,6 +297,8 @@ button { font: inherit; cursor: pointer; }
   background: rgba(31,41,55,.55);
   animation: dot 1.35s infinite;
 }
+
+/* 점 애니메이션 - 위아래로 움직임 */
 @keyframes dot {
   0% { transform: translateY(0); opacity: .9; }
   60% { transform: translateY(16px); opacity: .25; }
@@ -141,8 +306,11 @@ button { font: inherit; cursor: pointer; }
 }
 
 /* =========================
-   4) Info cards / Buttons
+   5) Info Cards / Buttons
+   - 정보 카드 및 버튼 스타일
 ========================= */
+
+/* 기본 카드 */
 .card {
   background: #ffffff;
   border: 1px solid #eef2f7;
@@ -150,54 +318,75 @@ button { font: inherit; cursor: pointer; }
   padding: 16px;
   box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
 }
+
+/* 그리드 컨테이너 */
 .grid {
   display: grid;
   gap: 12px;
 }
+
+/* 정보 행 (라벨 + 값) */
 .info-row {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 90px 1fr;  /* 라벨 90px, 나머지 값 */
   gap: 10px;
   align-items: start;
   font-size: 14px;
 }
 .label { color: #6b7280; }
 
+/* 버튼 행 (2열 그리드) */
 .btn-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 14px;
 }
+
+/* 기본 버튼 (Primary) */
 .btn {
   border: 0;
   border-radius: 14px;
   padding: 12px 12px;
-  background: #111827;
+  background: #111827;       /* 진한 색 배경 */
   color: #fff;
   font-weight: 700;
   box-shadow: 0 10px 16px rgba(17,24,39,.12);
   transition: transform .08s ease, opacity .2s ease;
 }
-.btn:active { transform: translateY(1px); opacity: .92; }
+.btn:active {
+  transform: translateY(1px);  /* 클릭 시 살짝 눌림 */
+  opacity: .92;
+}
+
+/* 보조 버튼 (Secondary) */
 .btn.secondary {
-  background: #f3f4f6;
+  background: #f3f4f6;       /* 연한 배경 */
   color: #111827;
   box-shadow: none;
   border: 1px solid #e5e7eb;
 }
 
 /* =========================
-   5) Calendar (simple)
+   6) Calendar
+   - 달력 테이블 스타일
 ========================= */
 .calendar {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 8px 10px;
+  border-collapse: separate;  /* 셀 간격 분리 */
+  border-spacing: 8px 10px;   /* 셀 간 간격 */
   font-size: 13px;
-  table-layout: fixed;
+  table-layout: fixed;        /* 고정 너비 레이아웃 */
 }
-.calendar th { color: #6b7280; font-weight: 650; padding-bottom: 4px; }
+
+/* 요일 헤더 */
+.calendar th {
+  color: #6b7280;
+  font-weight: 650;
+  padding-bottom: 4px;
+}
+
+/* 날짜 셀 */
 .calendar td {
   text-align: center;
   padding: 10px 0;
@@ -206,14 +395,30 @@ button { font: inherit; cursor: pointer; }
   border: 1px solid #eef2f7;
   color: #111827;
 }
-.calendar .empty { background: transparent; border: 0; }
+
+/* 빈 셀 (해당 월이 아닌 날짜) */
+.calendar .empty {
+  background: transparent;
+  border: 0;
+}
+
+/* 결혼식 날짜 강조 */
 .calendar .today {
-  background: #111827;
+  background: #111827;       /* 진한 배경 */
   color: #fff;
   border-color: #111827;
   font-weight: 800;
   position: relative;
 }
+
+/* 결혼식 날짜 안 하트 */
+.calendar .today .heart {
+  color: #f472b6;            /* 핑크색 하트 */
+  font-size: 10px;
+  margin-left: 1px;
+}
+
+/* 결혼식 날짜 아래 "WEDDING" 라벨 */
 .calendar .today::after {
   content: "WEDDING";
   position: absolute;
@@ -227,32 +432,201 @@ button { font: inherit; cursor: pointer; }
 }
 
 /* =========================
-   6) Gallery (pure CSS grid)
+   7) Gallery
+   - 사진 갤러리 CSS 그리드
 ========================= */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);  /* 모바일: 2열 */
   gap: 10px;
 }
+
+/* 420px 이상: 3열 */
 @media (min-width: 420px) {
   .gallery { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* 썸네일 버튼 */
 .thumb {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid #eef2f7;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;       /* 정사각형 비율 */
   background: #f3f4f6;
+  padding: 0;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 호버 효과 - 살짝 확대 */
+.thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+/* 클릭 효과 - 살짝 축소 */
+.thumb:active {
+  transform: scale(0.98);
+}
+
+/* 썸네일 내 이미지 */
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* 비율 유지하며 채우기 */
+}
 
 /* =========================
-   7) Map placeholder
+   8) Lightbox
+   - 이미지 확대 모달 (전체 화면 오버레이)
 ========================= */
-.map {
+.lightbox {
+  display: none;             /* 기본적으로 숨김 */
+  position: fixed;
+  inset: 0;                  /* 전체 화면 */
+  z-index: 9999;             /* 최상위 레이어 */
+  background: rgba(0,0,0,.92);  /* 어두운 반투명 배경 */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 활성화 상태 */
+.lightbox.active {
+  display: flex;
+}
+
+/* 확대된 이미지 */
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;          /* 뷰포트 높이의 85% */
+  border-radius: 12px;
+  object-fit: contain;
+  animation: lightboxFadeIn .2s ease;
+}
+
+/* 이미지 페이드인 애니메이션 */
+@keyframes lightboxFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 닫기 버튼 */
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  font-size: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .15s;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,.25);
+}
+
+/* 이전/다음 버튼 */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .15s;
+}
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255,255,255,.25);
+}
+
+/* 현재 이미지 번호 표시 (1/6) */
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.7);
+  font-size: 14px;
+}
+
+/* =========================
+   9) Map & Tabs
+   - 지도 영역 및 탭 전환
+========================= */
+
+/* 지도 탭 컨테이너 */
+.map-tabs {
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid #eef2f7;
+  background: #fff;
+}
+
+/* 탭 버튼 컨테이너 */
+.tab-buttons {
+  display: flex;
+  border-bottom: 1px solid #eef2f7;
+}
+
+/* 탭 버튼 */
+.tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+/* 활성화된 탭 버튼 */
+.tab-btn.active {
+  background: #fff;
+  color: #111827;
+  position: relative;
+}
+
+/* 활성 탭 하단 강조선 */
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #111827;
+}
+
+/* 탭 콘텐츠 */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* 지도 영역 */
+.map {
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
   background: #f9fafb;
   height: 220px;
   display: grid;
@@ -261,8 +635,16 @@ button { font: inherit; cursor: pointer; }
   font-weight: 650;
 }
 
+/* 지도 내 iframe 스타일 */
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* =========================
-   8) Account (details)
+   10) Account (details)
+   - 계좌정보 접기/펼치기 (<details> 태그 사용)
 ========================= */
 details {
   border-radius: 18px;
@@ -270,8 +652,10 @@ details {
   padding: 12px 14px;
   background: #fff;
 }
+
+/* 접기/펼치기 헤더 */
 summary {
-  list-style: none;
+  list-style: none;          /* 기본 삼각형 제거 */
   cursor: pointer;
   font-weight: 800;
   display: flex;
@@ -279,21 +663,33 @@ summary {
   justify-content: space-between;
   gap: 12px;
 }
-summary::-webkit-details-marker { display: none; }
+summary::-webkit-details-marker { display: none; }  /* Safari용 마커 제거 */
+
+/* 접기/펼치기 화살표 아이콘 */
 .chev {
-  width: 10px; height: 10px;
+  width: 10px;
+  height: 10px;
   border-right: 2px solid #111827;
   border-bottom: 2px solid #111827;
-  transform: rotate(45deg);
+  transform: rotate(45deg);  /* 아래 방향 화살표 */
   transition: transform .2s ease;
   opacity: .7;
 }
-details[open] .chev { transform: rotate(225deg); }
+details[open] .chev {
+  transform: rotate(225deg);  /* 열렸을 때 위 방향 */
+}
 
-.account-list { margin-top: 12px; display: grid; gap: 10px; }
+/* 계좌 목록 */
+.account-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+/* 개별 계좌 아이템 */
 .account-item {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto;  /* 정보 + 복사 버튼 */
   gap: 10px;
   align-items: center;
   padding: 12px;
@@ -302,6 +698,8 @@ details[open] .chev { transform: rotate(225deg); }
   border: 1px solid #eef2f7;
   font-size: 14px;
 }
+
+/* 복사 버튼 */
 .copy {
   padding: 10px 12px;
   border-radius: 12px;
@@ -311,17 +709,210 @@ details[open] .chev { transform: rotate(225deg); }
 }
 
 /* =========================
-   9) YouTube Video
+   11) Guestbook
+   - 방명록 스타일
+========================= */
+
+/* 방명록 부제목 */
+.gb-subtitle {
+  margin: -6px 0 16px;
+  font-size: 14px;
+}
+
+/* 메시지 리스트 래퍼 */
+.gb-list-wrap {
+  background: linear-gradient(to bottom, #f9fafb, #fff);  /* 그라데이션 배경 */
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid #eef2f7;
+  max-height: 360px;         /* 최대 높이 제한 */
+  overflow-y: auto;          /* 스크롤 가능 */
+}
+
+/* 메시지 리스트 */
+.gb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 개별 메시지 아이템 */
+.gb-item {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 2px 8px rgba(0,0,0,.03);
+}
+
+/* 메시지 헤더 (닉네임 + 날짜) */
+.gb-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.gb-item-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111827;
+}
+.gb-item-date {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-left: 8px;
+}
+
+/* 메시지 본문 */
+.gb-item-message {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  word-break: break-word;    /* 긴 단어 줄바꿈 */
+}
+
+/* 메시지 작성 폼 래퍼 */
+.gb-form-wrap {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 입력 필드 공통 스타일 */
+.gb-input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-family: inherit;
+  font-size: 14px;
+  background: #f9fafb;
+  box-sizing: border-box;
+  transition: border-color .15s, background .15s;
+}
+.gb-input:focus {
+  outline: none;
+  border-color: #111827;
+  background: #fff;
+}
+.gb-input-full {
+  width: 100%;
+}
+.gb-textarea {
+  resize: none;              /* 크기 조절 비활성화 */
+}
+
+/* 등록 버튼 */
+.gb-submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+}
+
+/* 상태 힌트 텍스트 */
+.gb-hint {
+  font-size: 13px;
+}
+
+/* 빈 메시지 상태 */
+.gb-empty {
+  text-align: center;
+  padding: 30px 20px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* =========================
+   12) Admin Section
+   - 관리자 로그인 영역 (푸터 위 작게 배치)
+========================= */
+.admin-section {
+  padding: 12px 18px;
+  border-top: 1px solid #eef2f7;
+}
+
+/* 접기/펼치기 토글 */
+.admin-toggle {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* "관리자" 라벨 */
+.admin-summary {
+  font-size: 11px;
+  color: #9ca3af;
+  cursor: pointer;
+  text-align: center;
+  list-style: none;
+}
+.admin-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 관리자 폼 컨테이너 */
+.admin-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* 관리자 입력 필드 */
+.admin-input {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+.admin-input:focus {
+  outline: none;
+  border-color: #9ca3af;
+}
+
+/* 관리자 버튼 */
+.admin-btn {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.admin-btn:hover {
+  background: #f3f4f6;
+}
+
+/* 로그인 상태 표시 */
+.admin-state {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* =========================
+   13) YouTube Video
+   - 유튜브 영상 임베드 (반응형 16:9)
 ========================= */
 .yt-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9;      /* 16:9 비율 유지 */
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid #eef2f7;
   background: #000;
 }
+
+/* iframe을 부모 크기에 맞춤 */
 .yt {
   position: absolute;
   inset: 0;
@@ -330,7 +921,8 @@ details[open] .chev { transform: rotate(225deg); }
 }
 
 /* =========================
-   10) Footer
+   14) Footer
+   - 페이지 하단 푸터
 ========================= */
 .footer {
   padding: 24px 18px 30px;

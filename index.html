@@ -1,12 +1,23 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <!-- ============================================================
+       기본 메타 태그
+       - charset: 문자 인코딩 (한글 지원)
+       - viewport: 반응형 웹을 위한 뷰포트 설정
+       - theme-color: 모바일 브라우저 상단바 색상
+       - description: 검색엔진 노출용 설명
+  ============================================================ -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#faf7f2" />
   <meta name="description" content="신랑 이인학 ♥ 신부 한예린, 2026년 4월 11일 토요일 오후 1시 30분, 빌라드지디 수서" />
 
-  <!-- Open Graph (카카오/페북 등) -->
+  <!-- ============================================================
+       Open Graph 메타 태그
+       - 카카오톡, 페이스북 등 SNS 공유 시 미리보기 정보
+       - og:url, og:image는 실제 배포 URL로 변경 필요
+  ============================================================ -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="이인학 ♥ 한예린 모바일 청첩장" />
   <meta property="og:description" content="2026년 4월 11일(토) 오후 1시 30분 · 빌라드지디 수서 5층 르씨엘홀" />
@@ -14,12 +25,22 @@
   <meta property="og:image" content="https://USERNAME.github.io/wedding/assets/og.jpg" />
 
   <title>모바일 청첩장</title>
+  <!-- 스타일시트 연결 -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <!-- ============================================================
+       메인 페이지 컨테이너
+       - .page: 모바일 카드 형태의 최대 너비 제한 (520px)
+  ============================================================ -->
   <main class="page">
-    <!-- ================= Cover ================= -->
+
+    <!-- ============================================================
+         섹션 1: 커버 (Hero)
+         - 메인 배경 이미지와 신랑/신부 이름, 날짜, 장소 표시
+         - .scroll-hint: 아래로 스크롤 유도 애니메이션
+    ============================================================ -->
     <section class="hero" aria-label="커버">
       <div class="hero-inner">
         <div class="kicker">Wedding Invitation</div>
@@ -28,17 +49,25 @@
           2026년 4월 11일 (토) 오후 1시 30분<br/>
           빌라드지디 수서 5층 르씨엘홀
         </div>
+        <!-- 스크롤 유도 아이콘 -->
         <div class="scroll-hint" aria-hidden="true"></div>
       </div>
     </section>
 
+    <!-- 본문 컨테이너 (좌우 패딩 적용) -->
     <div class="container">
-      <!-- ================= Intro ================= -->
+
+      <!-- ============================================================
+           섹션 2: 초대 인사말 (Intro)
+           - 초대 문구와 양가 부모님 정보
+           - .family-tree: 트리 구조로 부모님-신랑/신부 표시
+      ============================================================ -->
       <section class="section center" aria-label="초대합니다">
         <div class="kicker">Invitation</div>
         <h2 class="h1">초대합니다</h2>
         <div class="divider"></div>
-        <p class="muted" style="margin: 0 auto; max-width: 38ch;">
+        <!-- 초대 인사말 텍스트 -->
+        <p class="muted" style="margin: 0 auto; max-width: 48ch;">
           저희 두 사람이 사랑과 믿음으로 한 가정을 이루려 합니다.<br/>
           소중한 분들을 모시고 기쁜 날을 함께하고자 하오니<br/>
           귀한 걸음으로 축복해 주시면 감사하겠습니다.
@@ -46,33 +75,109 @@
 
         <div style="height: 18px;"></div>
 
-        <div class="card center">
-          <div class="muted" style="font-size: 14px;">
-            신랑 <b>이인학</b> · 아버지 <b>이기동</b> · 어머니 <b>이연자</b><br/>
-            신부 <b>한예린</b> · 아버지 <b>한상길</b> · 어머니 <b>박경애</b>
+        <!-- 양가 부모님 + 신랑/신부 트리 구조 -->
+        <div class="family-tree">
+          <!-- 신랑측 -->
+          <div class="family-side">
+            <div class="parents">
+              <!-- 아버지 -->
+              <div class="parent">
+                <img class="parent-photo" src="./test.png" alt="아버지">
+                <div class="parent-info">
+                  <span class="parent-role">아버지</span>
+                  <b>이기동</b>
+                </div>
+              </div>
+              <!-- 어머니 -->
+              <div class="parent">
+                <img class="parent-photo" src="./test.png" alt="어머니">
+                <div class="parent-info">
+                  <span class="parent-role">어머니</span>
+                  <b>이연자</b>
+                </div>
+              </div>
+            </div>
+            <!-- 연결선 -->
+            <div class="tree-line"></div>
+            <!-- 신랑 -->
+            <div class="person">
+              <span class="role">신랑</span>
+              <span class="name">이인학</span>
+            </div>
+          </div>
+
+          <!-- 신부측 -->
+          <div class="family-side">
+            <div class="parents">
+              <!-- 아버지 -->
+              <div class="parent">
+                <img class="parent-photo" src="./test.png" alt="아버지">
+                <div class="parent-info">
+                  <span class="parent-role">아버지</span>
+                  <b>한상길</b>
+                </div>
+              </div>
+              <!-- 어머니 -->
+              <div class="parent">
+                <img class="parent-photo" src="./test.png" alt="어머니">
+                <div class="parent-info">
+                  <span class="parent-role">어머니</span>
+                  <b>박경애</b>
+                </div>
+              </div>
+            </div>
+            <!-- 연결선 -->
+            <div class="tree-line"></div>
+            <!-- 신부 -->
+            <div class="person">
+              <span class="role">신부</span>
+              <span class="name">한예린</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= Wedding Info ================= -->
+      <!-- ============================================================
+           섹션 3: 예식 안내 (Wedding Info)
+           - 일시, 장소 정보
+           - 신랑/신부에게 전화 버튼
+      ============================================================ -->
       <section class="section" aria-label="예식 안내">
         <div class="kicker center">Details</div>
         <h2 class="h2 center">예식 안내</h2>
 
         <div class="grid">
           <div class="card">
+            <!-- 예식 안내 문구 -->
+            <p class="muted center" style="margin: 0 0 14px; line-height: 1.6;">
+              예식은 기독교식으로 진행되며,<br/>
+              1부 예식(5층)과 2부 연회(1층)로 나뉘어 진행됩니다.
+            </p>
+            <div class="divider" style="margin-bottom: 14px;"></div>
+            <!-- 일시 정보 -->
             <div class="info-row">
               <div class="label">일시</div>
-              <div><b>2026년 10월 12일(토) 오후 1시</b></div>
+              <div><b>2026년 4월 11일(토) 오후 1시 30분</b></div>
             </div>
+            <!-- 장소 정보 -->
             <div class="info-row" style="margin-top: 8px;">
               <div class="label">장소</div>
               <div>
-                <b>OO웨딩홀 3층 그랜드홀</b><br/>
-                <span class="muted">서울시 OO구 OO로 123</span>
+                <b>빌라드지디 수서</b><br/>
+                <span class="muted">서울 강남구 밤고개로21길 79</span>
               </div>
             </div>
+            <!-- 예식 진행 안내 -->
+            <div class="info-row" style="margin-top: 8px;">
+              <div class="label">1부 예식</div>
+              <div>오후 1시 30분 ~ 2시 30분 (5층 르씨엘홀)</div>
+            </div>
+            <div class="info-row" style="margin-top: 8px;">
+              <div class="label">2부 연회</div>
+              <div>오후 2시 30분 ~ 4시 (1층 연회장)</div>
+            </div>
 
+            <!-- 전화 버튼 (tel: 링크로 전화 앱 연결) -->
             <div class="btn-row">
               <a class="btn" href="tel:010-0000-0000">신랑에게 전화</a>
               <a class="btn secondary" href="tel:010-0000-0000">신부에게 전화</a>
@@ -81,15 +186,21 @@
         </div>
       </section>
 
-      <!-- ================= Calendar ================= -->
+      <!-- ============================================================
+           섹션 4: 달력 (Calendar)
+           - 결혼식 날짜가 표시된 달력
+           - D-day 카운트다운 (script.js에서 계산)
+      ============================================================ -->
       <section class="section" aria-label="달력">
         <div class="kicker center">Calendar</div>
         <h2 class="h2 center">일정</h2>
 
         <div class="card">
+          <!-- 달력 헤더 (년/월) -->
           <div class="center muted" style="margin-bottom: 6px; font-weight: 700;">
-            2026년 10월
+            2026년 4월
           </div>
+          <!-- 달력 테이블 -->
           <table class="calendar" aria-label="결혼식 달력">
             <thead>
               <tr>
@@ -98,31 +209,40 @@
             </thead>
             <tbody>
               <tr>
+                <!-- 4월 1일 = 수요일 -->
                 <td class="empty"></td><td class="empty"></td><td class="empty"></td>
                 <td>1</td><td>2</td><td>3</td><td>4</td>
               </tr>
               <tr>
-                <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+                <!-- .today: 결혼식 날짜 (4월 11일 토요일) 강조 -->
+                <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11 <span class="heart">♥</span></td>
               </tr>
               <tr>
-                <td class="today">12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+                <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
               </tr>
               <tr>
                 <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
               </tr>
               <tr>
-                <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty"></td>
+                <!-- 4월은 30일까지 -->
+                <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td>
               </tr>
             </tbody>
           </table>
 
+          <!-- D-day 텍스트 (JavaScript로 동적 계산) -->
           <div class="center muted" style="margin-top: 8px;">
             <span id="dday-text"></span>
           </div>
         </div>
       </section>
 
-      <!-- ================= Video ================= -->
+      <!-- ============================================================
+           섹션 5: 영상 (Video)
+           - YouTube 임베드
+           - autoplay, mute, loop 등 옵션으로 자동 반복 재생
+           - VIDEO_ID를 실제 YouTube 영상 ID로 교체 필요
+      ============================================================ -->
       <section class="section" aria-label="영상">
         <div class="kicker center">Video</div>
         <h2 class="h2 center">영상</h2>
@@ -130,7 +250,7 @@
         <div class="yt-wrap">
           <iframe
             class="yt"
-            src="https://www.youtube.com/embed/D0UW_Q-_E34?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=VIDEO_ID"
+            src="https://www.youtube.com/embed/D0UW_Q-_E34?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=D0UW_Q-_E34"
             title="YouTube video"
             frameborder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
@@ -139,54 +259,106 @@
         </div>
       </section>
 
-      <!-- ================= Gallery ================= -->
+      <!-- ============================================================
+           섹션 6: 갤러리 (Gallery)
+           - 사진 썸네일 그리드
+           - 클릭 시 라이트박스로 확대 (data-img 속성에 고해상도 URL)
+           - 이미지 URL을 실제 사진으로 교체 필요
+      ============================================================ -->
       <section class="section" aria-label="갤러리">
         <div class="kicker center">Gallery</div>
         <h2 class="h2 center">사진</h2>
 
         <div class="gallery" aria-label="사진 썸네일">
-          <!-- 이미지 URL만 교체하세요 -->
-          <a class="thumb" href="#" aria-label="사진 1"><img alt="gallery 1" src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=600&q=70"></a>
-          <a class="thumb" href="#" aria-label="사진 2"><img alt="gallery 2" src="https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=600&q=70"></a>
-          <a class="thumb" href="#" aria-label="사진 3"><img alt="gallery 3" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=70"></a>
-          <a class="thumb" href="#" aria-label="사진 4"><img alt="gallery 4" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=70"></a>
-          <a class="thumb" href="#" aria-label="사진 5"><img alt="gallery 5" src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9?auto=format&fit=crop&w=600&q=70"></a>
-          <a class="thumb" href="#" aria-label="사진 6"><img alt="gallery 6" src="https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?auto=format&fit=crop&w=600&q=70"></a>
+          <!-- 각 버튼의 data-img: 라이트박스에서 보여줄 고해상도 이미지 URL -->
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 1" src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=600&q=70"></button>
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 2" src="https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=600&q=70"></button>
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 3" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=70"></button>
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 4" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=70"></button>
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 5" src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9?auto=format&fit=crop&w=600&q=70"></button>
+          <button class="thumb" type="button" data-img="https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?auto=format&fit=crop&w=1200&q=80"><img alt="gallery 6" src="https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?auto=format&fit=crop&w=600&q=70"></button>
         </div>
 
         <p class="muted center" style="margin: 14px 0 0;">
-          (원하시면 "클릭하면 확대" 라이트박스도 JS로 붙여드릴게요)
+          사진을 클릭하면 크게 볼 수 있어요
         </p>
       </section>
 
-      <!-- ================= Location ================= -->
+      <!-- ============================================================
+           라이트박스 모달
+           - 갤러리 이미지 클릭 시 전체 화면으로 확대 표시
+           - 이전/다음 버튼, 닫기 버튼, 현재 위치 카운터
+           - script.js에서 기능 구현
+      ============================================================ -->
+      <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="닫기">&times;</button>
+        <button class="lightbox-prev" type="button" aria-label="이전">&#10094;</button>
+        <button class="lightbox-next" type="button" aria-label="다음">&#10095;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="확대 이미지">
+        <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+      </div>
+
+      <!-- ============================================================
+           섹션 7: 오시는 길 (Location)
+           - 탭으로 카카오/네이버 지도 전환
+           - 주소 정보 및 길찾기/주소 복사 버튼
+      ============================================================ -->
       <section class="section" aria-label="오시는 길">
         <div class="kicker center">Location</div>
         <h2 class="h2 center">오시는 길</h2>
 
         <div class="grid">
-          <div class="map" role="img" aria-label="지도 영역(임시)">
-            지도 영역 (카카오/네이버 지도 넣기)
+          <!-- 지도 탭 -->
+          <div class="map-tabs">
+            <div class="tab-buttons">
+              <button class="tab-btn active" type="button" data-tab="naver">네이버 지도</button>
+              <button class="tab-btn" type="button" data-tab="kakao">카카오 지도</button>
+            </div>
+
+            <!-- 네이버 지도 (기본 선택) -->
+            <div class="tab-content active" id="tab-naver">
+              <div class="map">
+                <!-- 네이버 지도 iframe을 여기에 삽입 -->
+                네이버 지도 영역
+              </div>
+            </div>
+
+            <!-- 카카오 지도 -->
+            <div class="tab-content" id="tab-kakao">
+              <div class="map">
+                <!-- 카카오 지도 iframe을 여기에 삽입 -->
+                카카오 지도 영역
+              </div>
+            </div>
           </div>
 
           <div class="card">
+            <!-- 주소 정보 -->
             <div class="info-row">
-              <div class="label">주소</div>
-              <div>
-                서울시 OO구 OO로 123, OO웨딩홀 3층<br/>
-                <span class="muted">지하철 OO역 3번 출구 도보 5분</span>
-              </div>
+              <div class="label">도로명</div>
+              <div>서울 강남구 밤고개로21길 79<br/><span class="muted">빌라드지디 수서 5층 르씨엘홀</span></div>
             </div>
+            <div class="info-row" style="margin-top: 8px;">
+              <div class="label">지번</div>
+              <div>서울 강남구 율현동 535</div>
+            </div>
+            <div class="info-row" style="margin-top: 8px;">
+              <div class="label">우편번호</div>
+              <div>06370</div>
+            </div>
+            <!-- 길찾기/주소복사 버튼 -->
             <div class="btn-row">
-              <!-- 실제 지도 링크로 바꾸세요 -->
               <a class="btn" href="#" target="_blank" rel="noopener">길찾기</a>
-              <button class="btn secondary" type="button" onclick="copyText('서울시 OO구 OO로 123')">주소 복사</button>
+              <button class="btn secondary" type="button" onclick="copyText('서울 강남구 밤고개로21길 79 빌라드지디 수서 5층 르씨엘홀')">주소 복사</button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= Transportation ================= -->
+      <!-- ============================================================
+           섹션 8: 교통 안내 (Transportation)
+           - 지하철, 버스, 주차 정보
+      ============================================================ -->
       <section class="section" aria-label="교통 안내">
         <div class="kicker center">Guide</div>
         <h2 class="h2 center">교통 안내</h2>
@@ -195,11 +367,11 @@
           <div class="card">
             <div class="info-row">
               <div class="label">지하철</div>
-              <div>OO선 OO역 3번 출구 → 도보 5분</div>
+              <div>3호선 수서역 4번 출구 → 도보 10분</div>
             </div>
             <div class="info-row" style="margin-top: 10px;">
               <div class="label">버스</div>
-              <div>OO정류장 하차 (간선 000 / 지선 000)</div>
+              <div>율현동삼거리 하차</div>
             </div>
             <div class="info-row" style="margin-top: 10px;">
               <div class="label">주차</div>
@@ -209,12 +381,18 @@
         </div>
       </section>
 
-      <!-- ================= Account ================= -->
+      <!-- ============================================================
+           섹션 9: 마음 전하실 곳 (Account/Gift)
+           - 신랑측/신부측 계좌 정보
+           - <details> 태그로 접기/펼치기 구현
+           - 복사 버튼으로 계좌번호 클립보드 복사
+      ============================================================ -->
       <section class="section" aria-label="마음 전하실 곳">
         <div class="kicker center">Gift</div>
         <h2 class="h2 center">마음 전하실 곳</h2>
 
         <div class="grid">
+          <!-- 신랑측 계좌 (접기/펼치기) -->
           <details>
             <summary>
               신랑측 계좌
@@ -231,6 +409,7 @@
             </div>
           </details>
 
+          <!-- 신부측 계좌 (접기/펼치기) -->
           <details>
             <summary>
               신부측 계좌
@@ -253,7 +432,11 @@
         </div>
       </section>
 
-      <!-- ================= Contact / Share ================= -->
+      <!-- ============================================================
+           섹션 10: 연락하기 (Contact/Share)
+           - 문자 보내기 버튼 (sms: 링크)
+           - 초대장 공유 버튼 (Web Share API 또는 링크 복사)
+      ============================================================ -->
       <section class="section center" aria-label="연락 및 공유">
         <div class="kicker">Contact</div>
         <h2 class="h2">연락하기</h2>
@@ -262,13 +445,480 @@
           <button class="btn secondary" type="button" onclick="sharePage()">초대장 공유</button>
         </div>
       </section>
+
+      <!-- ============================================================
+           섹션 11: 방명록 (Guestbook)
+           - Firebase Firestore 연동
+           - 메시지 리스트 (실시간 업데이트)
+           - 닉네임/메시지 입력 폼
+      ============================================================ -->
+      <section class="section" aria-label="방명록">
+        <div class="kicker center">Guest Book</div>
+        <h2 class="h2 center">방명록</h2>
+        <p class="muted center gb-subtitle">축하의 마음을 전해주세요</p>
+
+        <!-- 메시지 리스트 (Firebase에서 실시간으로 불러옴) -->
+        <div class="gb-list-wrap">
+          <div id="gbList" class="gb-list"></div>
+        </div>
+
+        <!-- 메시지 작성 폼 -->
+        <div class="gb-form-wrap">
+          <input id="gbName" class="gb-input gb-input-full" placeholder="닉네임" maxlength="20">
+          <textarea id="gbMsg" class="gb-input gb-textarea gb-input-full" placeholder="축하 메시지를 남겨주세요..." maxlength="300" rows="3"></textarea>
+          <button class="btn gb-submit-btn" type="button" id="gbSubmit">등록</button>
+          <!-- 등록 상태 메시지 -->
+          <div id="gbHint" class="muted center gb-hint"></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           섹션 12: 사진 업로드 (Photo Upload)
+           - Firebase Storage에 이미지 업로드
+           - 최대 10MB, 이미지 파일만 허용
+      ============================================================ -->
+      <section class="section" aria-label="사진 업로드">
+        <div class="kicker center">Photo Upload</div>
+        <h2 class="h2 center">사진 올리기</h2>
+
+        <div class="card">
+          <div class="muted" style="font-size:13px; margin-bottom:10px; text-align:center;">
+            결혼식 사진을 올려주시면 감사해요 🙏 (최대 10MB / 이미지 파일만)
+          </div>
+
+          <input id="upName" placeholder="이름(선택)" maxlength="30"
+            style="width:100%; padding:12px; border-radius:12px; border:1px solid #e5e7eb; margin-bottom:10px;">
+
+          <input id="upFile" type="file" accept="image/*" multiple
+            style="width:100%; padding:12px; border-radius:12px; border:1px solid #e5e7eb; margin-bottom:10px;">
+
+          <button class="btn" id="upBtn" type="button">사진 업로드</button>
+
+          <div id="upProgWrap" style="margin-top:12px; display:none;">
+            <div class="muted" style="font-size:12px; margin-bottom:6px;" id="upStatus">업로드 준비...</div>
+            <div style="height:10px; background:#eef2f7; border-radius:999px; overflow:hidden;">
+              <div id="upProg" style="height:100%; width:0%; background:#111827;"></div>
+            </div>
+          </div>
+
+          <div id="upHint" class="muted" style="margin-top:10px; font-size:13px; text-align:center;"></div>
+
+          <button class="btn secondary" id="togglePhotoList" type="button" style="margin-top:12px; width:100%;">📷 업로드된 사진 목록보기</button>
+
+          <div id="photoListWrap" style="margin-top:12px; display:none;"></div>
+        </div>
+      </section>
     </div>
 
+    <!-- ============================================================
+         관리자 영역
+         - 푸터 위에 작게 배치
+         - 기본적으로 접혀있고, 클릭하면 로그인 폼 표시
+         - Firebase Authentication으로 관리자 로그인
+         - 로그인 시 방명록 삭제 버튼 활성화
+    ============================================================ -->
+    <div class="admin-section">
+      <details class="admin-toggle">
+        <summary class="admin-summary">관리자</summary>
+        <div class="admin-content">
+          <input id="adminEmail" class="admin-input" placeholder="이메일" type="email">
+          <input id="adminPass" class="admin-input" placeholder="비밀번호" type="password">
+          <button class="admin-btn" type="button" id="adminLogin">로그인</button>
+          <button class="admin-btn" type="button" id="adminLogout">로그아웃</button>
+        </div>
+        <!-- 로그인 상태 표시 -->
+        <div id="adminState" class="admin-state"></div>
+      </details>
+    </div>
+
+    <!-- 푸터 -->
     <footer class="footer">
       © 2026 Wedding Invitation · Made with ❤️
     </footer>
   </main>
 
+  <!-- ============================================================
+       Firebase SDK 및 방명록 스크립트
+       - Firebase v10 모듈 방식 사용
+       - Firestore: 방명록 데이터 저장/조회
+       - Auth: 관리자 로그인/로그아웃
+
+       ⚠️ firebaseConfig는 본인의 Firebase 프로젝트 설정으로 교체 필요
+       - Firebase Console > 프로젝트 설정 > 내 앱 > 웹 앱에서 확인
+  ============================================================ -->
+  <script type="module">
+  // Firebase SDK 모듈 import
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, serverTimestamp,
+    query, orderBy, limit, onSnapshot, deleteDoc, doc
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+  import {
+    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import {
+    getStorage, ref, uploadBytesResumable, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+  // ⚠️ Firebase 설정 - 본인 프로젝트 값으로 교체 필요
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGEING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  };
+
+  // Firebase 초기화
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);       // Firestore 데이터베이스
+  const auth = getAuth(app);          // Authentication
+  const storage = getStorage(app);    // Storage (사진 업로드용)
+
+  // ============================================================
+  // DOM 요소 참조
+  // ============================================================
+  // 방명록 입력 폼 요소
+  const gbName = document.getElementById("gbName");      // 닉네임 입력
+  const gbMsg = document.getElementById("gbMsg");        // 메시지 입력
+  const gbSubmit = document.getElementById("gbSubmit");  // 등록 버튼
+  const gbHint = document.getElementById("gbHint");      // 상태 메시지
+  const gbList = document.getElementById("gbList");      // 메시지 리스트
+
+  // 관리자 로그인 요소
+  const adminEmail = document.getElementById("adminEmail");
+  const adminPass = document.getElementById("adminPass");
+  const adminLogin = document.getElementById("adminLogin");
+  const adminLogout = document.getElementById("adminLogout");
+  const adminState = document.getElementById("adminState");
+
+  // 관리자 로그인 상태
+  let isAdmin = false;
+
+  // ============================================================
+  // 방명록 메시지 등록
+  // - Firestore의 'guestbook' 컬렉션에 문서 추가
+  // ============================================================
+  gbSubmit.addEventListener("click", async () => {
+    const name = gbName.value.trim();
+    const message = gbMsg.value.trim();
+
+    // 유효성 검사
+    if (!name || !message) {
+      gbHint.textContent = "이름과 메시지를 입력해주세요.";
+      return;
+    }
+
+    gbHint.textContent = "등록 중...";
+    gbSubmit.disabled = true;
+
+    try {
+      // Firestore에 메시지 저장
+      await addDoc(collection(db, "guestbook"), {
+        name,
+        message,
+        createdAt: serverTimestamp()  // 서버 타임스탬프 사용
+      });
+      // 입력 필드 초기화
+      gbName.value = "";
+      gbMsg.value = "";
+      gbHint.textContent = "등록되었습니다 ❤️";
+    } catch (e) {
+      gbHint.textContent = "등록 실패. 잠시 후 다시 시도해주세요.";
+      console.error(e);
+    } finally {
+      gbSubmit.disabled = false;
+      // 1.8초 후 힌트 메시지 제거
+      setTimeout(() => (gbHint.textContent = ""), 1800);
+    }
+  });
+
+  // ============================================================
+  // 방명록 실시간 리스트 조회
+  // - onSnapshot: Firestore 실시간 리스너 (데이터 변경 시 자동 업데이트)
+  // - 최신순 정렬, 최대 50개 조회
+  // ============================================================
+  const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"), limit(50));
+
+  onSnapshot(q, (snap) => {
+    const items = [];
+    snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+
+    // 메시지 렌더링 또는 빈 상태 표시
+    gbList.innerHTML = items.map(renderItem).join("") || "<div class='gb-empty'>아직 메시지가 없어요.<br>첫 번째로 축하해주세요!</div>";
+
+    // 관리자인 경우 삭제 버튼에 이벤트 연결
+    if (isAdmin) {
+      gbList.querySelectorAll("[data-del]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-del");
+          if (!confirm("삭제할까요?")) return;
+          await deleteDoc(doc(db, "guestbook", id));
+        });
+      });
+    }
+  });
+
+  /**
+   * XSS 방지를 위한 HTML 이스케이프 함수
+   * - 사용자 입력값을 안전하게 HTML에 표시
+   */
+  function escapeHtml(s) {
+    return String(s)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  /**
+   * Firestore 타임스탬프를 날짜 문자열로 변환
+   * @param {Timestamp} ts - Firestore 타임스탬프
+   * @returns {string} YYYY.MM.DD 형식 문자열
+   */
+  function formatDate(ts) {
+    if (!ts) return "";
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    if (isNaN(d)) return "";
+    const yy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yy}.${mm}.${dd}`;
+  }
+
+  /**
+   * 방명록 메시지 아이템 HTML 렌더링
+   * @param {Object} item - 메시지 데이터 {id, name, message, createdAt}
+   * @returns {string} HTML 문자열
+   */
+  function renderItem(item) {
+    const name = escapeHtml(item.name || "");
+    const msg = escapeHtml(item.message || "").replaceAll("\n", "<br/>");
+    const d = formatDate(item.createdAt);
+
+    // 관리자인 경우 삭제 버튼 표시
+    const delBtn = isAdmin
+      ? `<button class="copy" type="button" data-del="${item.id}">삭제</button>`
+      : "";
+
+    return `
+      <div class="gb-item">
+        <div class="gb-item-header">
+          <div><span class="gb-item-name">${name}</span><span class="muted gb-item-date">${d}</span></div>
+          ${delBtn}
+        </div>
+        <div class="gb-item-message">${msg}</div>
+      </div>
+    `;
+  }
+
+  // ============================================================
+  // 관리자 로그인/로그아웃
+  // - Firebase Authentication 사용
+  // ============================================================
+
+  // 로그인 버튼 클릭
+  adminLogin.addEventListener("click", async () => {
+    const email = adminEmail.value.trim();
+    const pass = adminPass.value;
+    if (!email || !pass) {
+      adminState.textContent = "이메일/비밀번호를 입력하세요.";
+      return;
+    }
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch (e) {
+      adminState.textContent = "로그인 실패(계정/비번 확인)";
+      console.error(e);
+    }
+  });
+
+  // 로그아웃 버튼 클릭
+  adminLogout.addEventListener("click", async () => {
+    await signOut(auth);
+  });
+
+  // 로그인 상태 변경 감지
+  onAuthStateChanged(auth, (user) => {
+    isAdmin = !!user;
+    adminState.textContent = isAdmin ? `관리자 로그인됨: ${user.email}` : "관리자 로그아웃 상태";
+    // 관리자 상태 변경 시 사진 목록 다시 렌더링 (다운로드 버튼 표시/숨김)
+    refreshPhotoList();
+  });
+
+  // ============================================================
+  // 사진 업로드
+  // - Firebase Storage에 이미지 업로드
+  // - Firestore에 메타데이터 저장 (업로더 이름, 파일명, URL, 날짜)
+  // ============================================================
+  const upName = document.getElementById("upName");
+  const upFile = document.getElementById("upFile");
+  const upBtn = document.getElementById("upBtn");
+  const upProgWrap = document.getElementById("upProgWrap");
+  const upProg = document.getElementById("upProg");
+  const upStatus = document.getElementById("upStatus");
+  const upHint = document.getElementById("upHint");
+
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+  upBtn.addEventListener("click", async () => {
+    const files = upFile.files;
+    const uploaderName = upName.value.trim() || "익명";
+
+    // 파일 선택 확인
+    if (!files || files.length === 0) {
+      upHint.textContent = "사진을 선택해주세요.";
+      return;
+    }
+
+    // 파일 크기 및 타입 검사
+    for (const file of files) {
+      if (file.size > MAX_FILE_SIZE) {
+        upHint.textContent = `${file.name}의 크기가 10MB를 초과합니다.`;
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        upHint.textContent = `${file.name}은 이미지 파일이 아닙니다.`;
+        return;
+      }
+    }
+
+    upBtn.disabled = true;
+    upProgWrap.style.display = "block";
+    upHint.textContent = "";
+
+    let completed = 0;
+    const total = files.length;
+
+    for (const file of files) {
+      try {
+        // 고유한 파일명 생성 (timestamp + 원본파일명)
+        const timestamp = Date.now();
+        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+        const filePath = `photos/${timestamp}_${safeName}`;
+        const storageRef = ref(storage, filePath);
+
+        // 업로드 시작 (진행률 추적)
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        await new Promise((resolve, reject) => {
+          uploadTask.on("state_changed",
+            (snapshot) => {
+              // 진행률 업데이트
+              const fileProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              const overallProgress = ((completed + fileProgress / 100) / total) * 100;
+              upProg.style.width = overallProgress + "%";
+              upStatus.textContent = `업로드 중... ${completed + 1}/${total} (${Math.round(fileProgress)}%)`;
+            },
+            (error) => {
+              console.error("업로드 에러:", error);
+              reject(error);
+            },
+            async () => {
+              // 업로드 완료 - 다운로드 URL 가져오기
+              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+              // Firestore에 메타데이터 저장
+              await addDoc(collection(db, "photos"), {
+                uploaderName,
+                fileName: file.name,
+                filePath,
+                downloadURL,
+                fileSize: file.size,
+                createdAt: serverTimestamp()
+              });
+
+              completed++;
+              resolve();
+            }
+          );
+        });
+      } catch (e) {
+        console.error("업로드 실패:", e);
+        upHint.textContent = `업로드 실패: ${file.name}`;
+      }
+    }
+
+    // 완료
+    upProg.style.width = "100%";
+    upStatus.textContent = "업로드 완료!";
+    upHint.textContent = `${completed}개의 사진이 업로드되었습니다 ❤️`;
+    upFile.value = "";
+    upBtn.disabled = false;
+
+    setTimeout(() => {
+      upProgWrap.style.display = "none";
+      upProg.style.width = "0%";
+    }, 2000);
+  });
+
+  // ============================================================
+  // 업로드된 사진 목록
+  // - 목록은 모두 볼 수 있음 (최대 30개)
+  // - 다운로드는 관리자만 가능
+  // ============================================================
+  const photoListWrap = document.getElementById("photoListWrap");
+  const togglePhotoListBtn = document.getElementById("togglePhotoList");
+  let photoListVisible = false;
+  let cachedPhotos = []; // 사진 목록 캐시 (관리자 상태 변경 시 재렌더링용)
+
+  // 목록보기 버튼 클릭
+  togglePhotoListBtn.addEventListener("click", () => {
+    photoListVisible = !photoListVisible;
+    photoListWrap.style.display = photoListVisible ? "block" : "none";
+    togglePhotoListBtn.textContent = photoListVisible
+      ? `📷 목록 닫기 (${cachedPhotos.length})`
+      : `📷 업로드된 사진 목록보기 (${cachedPhotos.length})`;
+  });
+
+  // 사진 목록 렌더링 함수
+  function renderPhotos(photos) {
+    if (photos.length === 0) {
+      photoListWrap.innerHTML = "<div class='muted center' style='padding:12px;'>업로드된 사진이 없습니다.</div>";
+      return;
+    }
+
+    photoListWrap.innerHTML = `
+      <div style="max-height:250px; overflow-y:auto;">
+        ${photos.map(p => `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eef2f7;">
+            <div style="font-size:13px; flex:1; min-width:0;">
+              <b>${escapeHtml(p.uploaderName)}</b>
+              <span class="muted" style="margin-left:6px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(p.fileName)}</span>
+            </div>
+            ${isAdmin ? `<a href="${p.downloadURL}" target="_blank" download="${p.fileName}" class="btn" style="padding:6px 12px; font-size:12px; margin-left:8px; flex-shrink:0;">다운로드</a>` : ''}
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  // 관리자 상태 변경 시 호출 (다운로드 버튼 표시/숨김 갱신)
+  function refreshPhotoList() {
+    renderPhotos(cachedPhotos);
+  }
+
+  // 실시간 리스너로 사진 목록 가져오기 (최대 30개)
+  const photosQuery = query(collection(db, "photos"), orderBy("createdAt", "desc"), limit(30));
+
+  onSnapshot(photosQuery, (snap) => {
+    cachedPhotos = [];
+    snap.forEach((d) => cachedPhotos.push({ id: d.id, ...d.data() }));
+
+    // 버튼 텍스트 업데이트
+    togglePhotoListBtn.textContent = photoListVisible
+      ? `📷 목록 닫기 (${cachedPhotos.length})`
+      : `📷 업로드된 사진 목록보기 (${cachedPhotos.length})`;
+
+    // 목록 렌더링
+    renderPhotos(cachedPhotos);
+  });
+</script>
+
+  <!-- 기타 JavaScript (D-day, 클립보드, 공유, 라이트박스) -->
   <script src="script.js"></script>
 </body>
 </html>
