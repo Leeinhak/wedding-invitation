@@ -1,0 +1,322 @@
+/* =========================
+   0) Base / Reset
+========================= */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+  color: #1f2937;
+  background: #f3f4f6;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid rgba(59,130,246,.35); outline-offset: 2px; border-radius: 10px; }
+
+/* =========================
+   1) Layout (Mobile-first)
+   - PC에서도 "모바일 카드"처럼 보이게 중앙 고정
+========================= */
+.page {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+  box-shadow: 0 10px 40px rgba(0,0,0,.12);
+}
+
+/* PC에서는 페이지 배경 여백이 보이도록 */
+@media (min-width: 860px) {
+  body { padding: 32px 0; }
+  .page { border-radius: 24px; overflow: hidden; }
+}
+
+/* =========================
+   2) Utilities
+========================= */
+.container { padding: 22px 18px; }
+.section { padding: 34px 0; border-top: 1px solid #eef2f7; }
+.section:first-child { border-top: 0; }
+.center { text-align: center; }
+.muted { color: #6b7280; }
+.kicker { letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: #9ca3af; }
+
+.h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  margin: 10px 0 6px;
+  font-weight: 750;
+}
+.h2 {
+  font-size: 18px;
+  margin: 0 0 14px;
+  font-weight: 750;
+}
+.divider {
+  width: 56px;
+  height: 2px;
+  margin: 14px auto;
+  background: rgba(17,24,39,.16);
+  border-radius: 999px;
+}
+
+/* =========================
+   3) Hero / Cover
+========================= */
+.hero {
+  position: relative;
+  min-height: 72vh;
+  display: grid;
+  place-items: end center;
+  padding: 24px 18px;
+  color: #0b1220;
+  background: #faf7f2;
+  overflow: hidden;
+}
+/* 배경 이미지 (원하시면 URL 교체) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(255,255,255,.95), rgba(255,255,255,.35) 45%, rgba(0,0,0,.06)),
+    url("./main3.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  filter: saturate(1.02);
+}
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.names {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.heart {
+  display: inline-block;
+  margin: 0 8px;
+  transform: translateY(-1px);
+  opacity: .85;
+}
+.hero-meta {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(31,41,55,.85);
+}
+.scroll-hint {
+  position: relative;
+  margin: 18px auto 0;
+  width: 30px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(31,41,55,.28);
+  display: grid;
+  place-items: start center;
+  padding-top: 8px;
+  opacity: .75;
+}
+.scroll-hint::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(31,41,55,.55);
+  animation: dot 1.35s infinite;
+}
+@keyframes dot {
+  0% { transform: translateY(0); opacity: .9; }
+  60% { transform: translateY(16px); opacity: .25; }
+  100% { transform: translateY(0); opacity: .9; }
+}
+
+/* =========================
+   4) Info cards / Buttons
+========================= */
+.card {
+  background: #ffffff;
+  border: 1px solid #eef2f7;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+}
+.grid {
+  display: grid;
+  gap: 12px;
+}
+.info-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 14px;
+}
+.label { color: #6b7280; }
+
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.btn {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 12px;
+  background: #111827;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 16px rgba(17,24,39,.12);
+  transition: transform .08s ease, opacity .2s ease;
+}
+.btn:active { transform: translateY(1px); opacity: .92; }
+.btn.secondary {
+  background: #f3f4f6;
+  color: #111827;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+/* =========================
+   5) Calendar (simple)
+========================= */
+.calendar {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px 10px;
+  font-size: 13px;
+  table-layout: fixed;
+}
+.calendar th { color: #6b7280; font-weight: 650; padding-bottom: 4px; }
+.calendar td {
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+  color: #111827;
+}
+.calendar .empty { background: transparent; border: 0; }
+.calendar .today {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+  font-weight: 800;
+  position: relative;
+}
+.calendar .today::after {
+  content: "WEDDING";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -18px;
+  font-size: 10px;
+  letter-spacing: .12em;
+  opacity: .75;
+  color: #111827;
+}
+
+/* =========================
+   6) Gallery (pure CSS grid)
+========================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (min-width: 420px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+.thumb {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eef2f7;
+  aspect-ratio: 1 / 1;
+  background: #f3f4f6;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =========================
+   7) Map placeholder
+========================= */
+.map {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #eef2f7;
+  background: #f9fafb;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+  font-weight: 650;
+}
+
+/* =========================
+   8) Account (details)
+========================= */
+details {
+  border-radius: 18px;
+  border: 1px solid #eef2f7;
+  padding: 12px 14px;
+  background: #fff;
+}
+summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+summary::-webkit-details-marker { display: none; }
+.chev {
+  width: 10px; height: 10px;
+  border-right: 2px solid #111827;
+  border-bottom: 2px solid #111827;
+  transform: rotate(45deg);
+  transition: transform .2s ease;
+  opacity: .7;
+}
+details[open] .chev { transform: rotate(225deg); }
+
+.account-list { margin-top: 12px; display: grid; gap: 10px; }
+.account-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+  font-size: 14px;
+}
+.copy {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-weight: 750;
+}
+
+/* =========================
+   9) Footer
+========================= */
+.footer {
+  padding: 24px 18px 30px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 12px;
+  background: #fff;
+}
