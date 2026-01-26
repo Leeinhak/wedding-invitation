@@ -235,7 +235,7 @@ button { font: inherit; cursor: pointer; }
   /* 그라데이션 + 배경 이미지 중첩 */
   background:
     linear-gradient(to top, rgba(255,255,255,.95), rgba(255,255,255,.35) 45%, rgba(0,0,0,.06)),
-    url("./main3.jpg");      /* ⚠️ 실제 이미지 경로로 변경 필요 */
+    url("https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/34_KB_00827-.jpg?alt=media&token=b0f5f50f-6a06-438e-9f4f-200f211da87b");      /* ⚠️ 실제 이미지 경로로 변경 필요 */
   background-size: cover;
   background-position: center;
   transform: scale(1.02);    /* 약간 확대 (움직임 효과용) */
