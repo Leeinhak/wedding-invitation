@@ -926,8 +926,208 @@ details[open] .chev {
 ========================= */
 .footer {
   padding: 24px 18px 30px;
+  padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
   text-align: center;
   color: #9ca3af;
   font-size: 12px;
   background: #fff;
+}
+
+/* =========================
+   15) Safe Area (노치/다이내믹 아일랜드)
+   - iPhone X 이후 노치, 다이내믹 아일랜드 대응
+   - viewport-fit=cover와 함께 사용
+========================= */
+.hero {
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+}
+
+.page {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* =========================
+   16) 소형 화면 대응 (360px 이하)
+   - iPhone SE, Galaxy S 미니 등
+========================= */
+@media (max-width: 360px) {
+  /* 컨테이너 패딩 축소 */
+  .container { padding: 18px 14px; }
+  .section { padding: 26px 0; }
+
+  /* 제목 크기 축소 */
+  .h1 { font-size: 24px; }
+  .h2 { font-size: 16px; }
+  .names { font-size: 24px; }
+
+  /* Family Tree: 부모 카드를 세로 배치 */
+  .parents {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .parent {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .parent-photo {
+    width: 30px;
+    height: 30px;
+  }
+  .family-tree {
+    gap: 10px;
+  }
+  .person {
+    padding: 10px 14px;
+  }
+  .person .name {
+    font-size: 14px;
+  }
+
+  /* Calendar: 간격 축소 */
+  .calendar {
+    border-spacing: 4px 6px;
+    font-size: 12px;
+  }
+  .calendar td {
+    padding: 8px 0;
+  }
+  .calendar .today::after {
+    font-size: 9px;
+    bottom: -16px;
+  }
+
+  /* Info Row: 라벨 너비 축소 */
+  .info-row {
+    grid-template-columns: 72px 1fr;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  /* 버튼: 폰트 축소 */
+  .btn {
+    padding: 11px 10px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+  .btn-row {
+    gap: 8px;
+  }
+
+  /* 갤러리 간격 축소 */
+  .gallery { gap: 6px; }
+  .thumb { border-radius: 12px; }
+
+  /* 카드 패딩 축소 */
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  /* 계좌정보 */
+  details { padding: 10px 12px; }
+  .account-item {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .copy {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  /* 방명록 */
+  .gb-list-wrap {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .gb-item {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+  .gb-input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .gb-form-wrap {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  /* 지도 탭 버튼 */
+  .tab-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  /* 라이트박스 */
+  .lightbox { padding: 12px; }
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   17) 초소형 화면 대응 (320px 이하)
+   - iPhone SE 1세대 등
+========================= */
+@media (max-width: 320px) {
+  .container { padding: 14px 10px; }
+  .h1 { font-size: 22px; }
+  .names { font-size: 22px; }
+
+  /* Family Tree: 더 콤팩트하게 */
+  .family-tree { gap: 6px; }
+  .parent {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+  .parent-photo {
+    width: 26px;
+    height: 26px;
+  }
+  .parent-info b { font-size: 11px; }
+  .parent-role { font-size: 8px; }
+  .person {
+    padding: 8px 10px;
+  }
+  .person .name { font-size: 13px; }
+  .person .role { font-size: 9px; }
+
+  /* Calendar */
+  .calendar {
+    border-spacing: 2px 4px;
+    font-size: 11px;
+  }
+  .calendar td {
+    padding: 6px 0;
+    border-radius: 8px;
+  }
+
+  /* Info Row: 1열로 변경 */
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  /* 버튼: 1열 전환 */
+  .btn-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .btn {
+    font-size: 13px;
+    padding: 12px 10px;
+  }
 }

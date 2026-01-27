@@ -827,7 +827,7 @@
         // 고유한 파일명 생성 (timestamp + 원본파일명)
         const timestamp = Date.now();
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const filePath = `photos/${timestamp}_${safeName}`;
+        const filePath = `wedding_uploads/${timestamp}_${safeName}`;
         const storageRef = ref(storage, filePath);
 
         // 업로드 시작 (진행률 추적)
@@ -847,15 +847,11 @@
               reject(error);
             },
             async () => {
-              // 업로드 완료 - 다운로드 URL 가져오기
-              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-
-              // Firestore에 메타데이터 저장
+              // Firestore에 메타데이터 저장 (URL은 관리자만 조회 가능하므로 경로만 저장)
               await addDoc(collection(db, "photos"), {
                 uploaderName,
                 fileName: file.name,
                 filePath,
-                downloadURL,
                 fileSize: file.size,
                 createdAt: serverTimestamp()
               });
