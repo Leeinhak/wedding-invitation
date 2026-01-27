@@ -35,13 +35,13 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  /* 시스템 폰트 스택 - 각 OS에서 최적의 폰트 사용 */
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
-  color: #1f2937;           /* 기본 텍스트 색상 (진한 회색) */
-  background: #f3f4f6;      /* 페이지 배경색 (연한 회색) */
-  line-height: 1.6;         /* 줄 간격 */
-  -webkit-font-smoothing: antialiased;    /* 맥에서 폰트 부드럽게 */
-  text-rendering: optimizeLegibility;     /* 텍스트 렌더링 최적화 */
+  /* 본문: Noto Sans KR */
+  font-family: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #2c2c2c;           /* 기본 텍스트 색상 (부드러운 다크) */
+  background: #f0ebe4;      /* 페이지 배경색 (웜 베이지) */
+  line-height: 1.7;         /* 줄 간격 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* 이미지 기본 설정 */
@@ -66,11 +66,11 @@ button { font: inherit; cursor: pointer; }
    - PC에서도 모바일 카드처럼 중앙에 고정
 ========================= */
 .page {
-  max-width: 520px;         /* 최대 너비 520px (모바일 카드 크기) */
-  margin: 0 auto;           /* 가로 중앙 정렬 */
-  background: #fff;         /* 흰색 배경 */
-  min-height: 100vh;        /* 최소 높이: 뷰포트 전체 */
-  box-shadow: 0 10px 40px rgba(0,0,0,.12);  /* 그림자 효과 */
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fffcf8;      /* 따뜻한 아이보리 배경 */
+  min-height: 100vh;
+  box-shadow: 0 10px 50px rgba(0,0,0,.08);
 }
 
 /* PC 화면 (860px 이상)에서 카드 형태로 표시 */
@@ -84,38 +84,43 @@ button { font: inherit; cursor: pointer; }
    - 재사용 가능한 유틸리티 클래스
 ========================= */
 .container { padding: 22px 18px; }           /* 본문 컨테이너 패딩 */
-.section { padding: 34px 0; border-top: 1px solid #eef2f7; }  /* 섹션 구분선 */
+.section { padding: 40px 0; border-top: 1px solid #e8e0d4; }  /* 섹션 구분선 (웜톤) */
 .section:first-child { border-top: 0; }      /* 첫 섹션은 구분선 제거 */
 .center { text-align: center; }              /* 텍스트 중앙 정렬 */
-.muted { color: #6b7280; }                   /* 흐린 텍스트 색상 */
+.muted { color: #8c8279; }                   /* 흐린 텍스트 (웜 그레이) */
 
 /* 섹션 상단 영문 라벨 */
 .kicker {
-  letter-spacing: .12em;    /* 자간 넓힘 */
-  text-transform: uppercase; /* 대문자 변환 */
-  font-size: 12px;
-  color: #9ca3af;
+  font-family: "Cormorant Garamond", "Noto Serif KR", serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #b8a78a;           /* 골드 톤 */
 }
 
-/* 제목 스타일 */
+/* 제목 스타일 - 세리프 폰트로 우아한 느낌 */
 .h1 {
+  font-family: "Noto Serif KR", "Cormorant Garamond", serif;
   font-size: 28px;
-  line-height: 1.25;
+  line-height: 1.3;
   margin: 10px 0 6px;
-  font-weight: 750;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 .h2 {
-  font-size: 18px;
-  margin: 0 0 14px;
-  font-weight: 750;
+  font-family: "Noto Serif KR", "Cormorant Garamond", serif;
+  font-size: 19px;
+  margin: 0 0 16px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
-/* 구분선 */
+/* 구분선 - 골드 톤 */
 .divider {
-  width: 56px;
-  height: 2px;
-  margin: 14px auto;
-  background: rgba(17,24,39,.16);
+  width: 48px;
+  height: 1px;
+  margin: 18px auto;
+  background: linear-gradient(90deg, transparent, #c9b88c, transparent);
   border-radius: 999px;
 }
 
@@ -154,7 +159,7 @@ button { font: inherit; cursor: pointer; }
   gap: 10px;
   padding: 8px 12px;
   background: #fff;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   border-radius: 12px;
 }
 
@@ -164,7 +169,7 @@ button { font: inherit; cursor: pointer; }
   height: 36px;
   border-radius: 50%;        /* 원형 */
   object-fit: cover;         /* 비율 유지하며 채우기 */
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
 }
 
 /* 부모님 정보 텍스트 */
@@ -175,7 +180,7 @@ button { font: inherit; cursor: pointer; }
 }
 .parent-role {
   font-size: 9px;
-  color: #9ca3af;
+  color: #a89e93;
 }
 .parent-info b {
   font-size: 12px;
@@ -196,20 +201,22 @@ button { font: inherit; cursor: pointer; }
   flex-direction: column;
   align-items: center;
   padding: 12px 20px;
-  background: #f9fafb;
-  border: 1px solid #eef2f7;
+  background: #faf7f2;
+  border: 1px solid #e8e0d4;
   border-radius: 14px;
 }
 .person .role {
-  font-size: 10px;
-  color: #9ca3af;
-  letter-spacing: 0.08em;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  color: #b8a78a;
+  letter-spacing: 0.1em;
   margin-bottom: 2px;
 }
 .person .name {
+  font-family: "Noto Serif KR", serif;
   font-size: 16px;
-  font-weight: 800;
-  color: #111827;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 /* =========================
@@ -253,10 +260,12 @@ button { font: inherit; cursor: pointer; }
 
 /* 신랑/신부 이름 */
 .names {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: "Noto Serif KR", "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   margin: 0;
+  color: #1a1a1a;
 }
 
 /* 하트 아이콘 */
@@ -313,10 +322,10 @@ button { font: inherit; cursor: pointer; }
 /* 기본 카드 */
 .card {
   background: #ffffff;
-  border: 1px solid #eef2f7;
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+  border: 1px solid #e8e0d4;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 4px 24px rgba(160, 140, 110, 0.08);
 }
 
 /* 그리드 컨테이너 */
@@ -333,7 +342,7 @@ button { font: inherit; cursor: pointer; }
   align-items: start;
   font-size: 14px;
 }
-.label { color: #6b7280; }
+.label { color: #8c8279; }
 
 /* 버튼 행 (2열 그리드) */
 .btn-row {
@@ -343,28 +352,29 @@ button { font: inherit; cursor: pointer; }
   margin-top: 14px;
 }
 
-/* 기본 버튼 (Primary) */
+/* 기본 버튼 (Primary) - 골드 톤 */
 .btn {
   border: 0;
   border-radius: 14px;
-  padding: 12px 12px;
-  background: #111827;       /* 진한 색 배경 */
+  padding: 13px 14px;
+  background: linear-gradient(135deg, #3a3632, #5c5347);
   color: #fff;
   font-weight: 700;
-  box-shadow: 0 10px 16px rgba(17,24,39,.12);
-  transition: transform .08s ease, opacity .2s ease;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(58, 54, 50, 0.15);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 .btn:active {
-  transform: translateY(1px);  /* 클릭 시 살짝 눌림 */
-  opacity: .92;
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(58, 54, 50, 0.1);
 }
 
 /* 보조 버튼 (Secondary) */
 .btn.secondary {
-  background: #f3f4f6;       /* 연한 배경 */
-  color: #111827;
+  background: #faf6f0;
+  color: #3a3632;
   box-shadow: none;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd4c8;
 }
 
 /* =========================
@@ -381,7 +391,7 @@ button { font: inherit; cursor: pointer; }
 
 /* 요일 헤더 */
 .calendar th {
-  color: #6b7280;
+  color: #8c8279;
   font-weight: 650;
   padding-bottom: 4px;
 }
@@ -391,9 +401,9 @@ button { font: inherit; cursor: pointer; }
   text-align: center;
   padding: 10px 0;
   border-radius: 12px;
-  background: #f9fafb;
-  border: 1px solid #eef2f7;
-  color: #111827;
+  background: #faf7f2;
+  border: 1px solid #e8e0d4;
+  color: #2c2c2c;
 }
 
 /* 빈 셀 (해당 월이 아닌 날짜) */
@@ -404,9 +414,9 @@ button { font: inherit; cursor: pointer; }
 
 /* 결혼식 날짜 강조 */
 .calendar .today {
-  background: #111827;       /* 진한 배경 */
+  background: linear-gradient(135deg, #3a3632, #5c5347);
   color: #fff;
-  border-color: #111827;
+  border-color: transparent;
   font-weight: 800;
   position: relative;
 }
@@ -425,10 +435,11 @@ button { font: inherit; cursor: pointer; }
   left: 50%;
   transform: translateX(-50%);
   bottom: -18px;
+  font-family: "Cormorant Garamond", serif;
   font-size: 10px;
-  letter-spacing: .12em;
-  opacity: .75;
-  color: #111827;
+  letter-spacing: .15em;
+  opacity: .8;
+  color: #b8a78a;
 }
 
 /* =========================
@@ -450,9 +461,9 @@ button { font: inherit; cursor: pointer; }
 .thumb {
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   aspect-ratio: 1 / 1;       /* 정사각형 비율 */
-  background: #f3f4f6;
+  background: #f5f0e8;
   padding: 0;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease;
@@ -572,14 +583,14 @@ button { font: inherit; cursor: pointer; }
 .map-tabs {
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   background: #fff;
 }
 
 /* 탭 버튼 컨테이너 */
 .tab-buttons {
   display: flex;
-  border-bottom: 1px solid #eef2f7;
+  border-bottom: 1px solid #e8e0d4;
 }
 
 /* 탭 버튼 */
@@ -587,8 +598,8 @@ button { font: inherit; cursor: pointer; }
   flex: 1;
   padding: 12px 16px;
   border: none;
-  background: #f9fafb;
-  color: #6b7280;
+  background: #faf7f2;
+  color: #8c8279;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -598,7 +609,7 @@ button { font: inherit; cursor: pointer; }
 /* 활성화된 탭 버튼 */
 .tab-btn.active {
   background: #fff;
-  color: #111827;
+  color: #2c2c2c;
   position: relative;
 }
 
@@ -610,7 +621,7 @@ button { font: inherit; cursor: pointer; }
   left: 0;
   right: 0;
   height: 2px;
-  background: #111827;
+  background: #2c2c2c;
 }
 
 /* 탭 콘텐츠 */
@@ -627,11 +638,11 @@ button { font: inherit; cursor: pointer; }
   border-radius: 0;
   overflow: hidden;
   border: none;
-  background: #f9fafb;
+  background: #faf7f2;
   height: 220px;
   display: grid;
   place-items: center;
-  color: #6b7280;
+  color: #8c8279;
   font-weight: 650;
 }
 
@@ -648,7 +659,7 @@ button { font: inherit; cursor: pointer; }
 ========================= */
 details {
   border-radius: 18px;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   padding: 12px 14px;
   background: #fff;
 }
@@ -669,8 +680,8 @@ summary::-webkit-details-marker { display: none; }  /* Safari용 마커 제거 *
 .chev {
   width: 10px;
   height: 10px;
-  border-right: 2px solid #111827;
-  border-bottom: 2px solid #111827;
+  border-right: 2px solid #2c2c2c;
+  border-bottom: 2px solid #2c2c2c;
   transform: rotate(45deg);  /* 아래 방향 화살표 */
   transition: transform .2s ease;
   opacity: .7;
@@ -694,8 +705,8 @@ details[open] .chev {
   align-items: center;
   padding: 12px;
   border-radius: 14px;
-  background: #f9fafb;
-  border: 1px solid #eef2f7;
+  background: #faf7f2;
+  border: 1px solid #e8e0d4;
   font-size: 14px;
 }
 
@@ -703,7 +714,7 @@ details[open] .chev {
 .copy {
   padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd4c8;
   background: #fff;
   font-weight: 750;
 }
@@ -721,11 +732,11 @@ details[open] .chev {
 
 /* 메시지 리스트 래퍼 */
 .gb-list-wrap {
-  background: linear-gradient(to bottom, #f9fafb, #fff);  /* 그라데이션 배경 */
+  background: linear-gradient(to bottom, #faf7f2, #fff);  /* 그라데이션 배경 */
   border-radius: 20px;
   padding: 16px;
   margin-bottom: 14px;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   max-height: 360px;         /* 최대 높이 제한 */
   overflow-y: auto;          /* 스크롤 가능 */
 }
@@ -742,7 +753,7 @@ details[open] .chev {
   padding: 14px 16px;
   border-radius: 16px;
   background: #fff;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   box-shadow: 0 2px 8px rgba(0,0,0,.03);
 }
 
@@ -756,11 +767,11 @@ details[open] .chev {
 .gb-item-name {
   font-weight: 700;
   font-size: 14px;
-  color: #111827;
+  color: #2c2c2c;
 }
 .gb-item-date {
   font-size: 11px;
-  color: #9ca3af;
+  color: #a89e93;
   margin-left: 8px;
 }
 
@@ -777,7 +788,7 @@ details[open] .chev {
   background: #fff;
   border-radius: 20px;
   padding: 16px;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   box-shadow: 0 4px 12px rgba(0,0,0,.04);
   display: flex;
   flex-direction: column;
@@ -788,16 +799,16 @@ details[open] .chev {
 .gb-input {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd4c8;
   font-family: inherit;
   font-size: 14px;
-  background: #f9fafb;
+  background: #faf7f2;
   box-sizing: border-box;
   transition: border-color .15s, background .15s;
 }
 .gb-input:focus {
   outline: none;
-  border-color: #111827;
+  border-color: #2c2c2c;
   background: #fff;
 }
 .gb-input-full {
@@ -822,7 +833,7 @@ details[open] .chev {
 .gb-empty {
   text-align: center;
   padding: 30px 20px;
-  color: #9ca3af;
+  color: #a89e93;
   font-size: 14px;
 }
 
@@ -832,7 +843,7 @@ details[open] .chev {
 ========================= */
 .admin-section {
   padding: 12px 18px;
-  border-top: 1px solid #eef2f7;
+  border-top: 1px solid #e8e0d4;
 }
 
 /* 접기/펼치기 토글 */
@@ -844,7 +855,7 @@ details[open] .chev {
 /* "관리자" 라벨 */
 .admin-summary {
   font-size: 11px;
-  color: #9ca3af;
+  color: #a89e93;
   cursor: pointer;
   text-align: center;
   list-style: none;
@@ -867,13 +878,13 @@ details[open] .chev {
   min-width: 100px;
   padding: 8px 10px;
   font-size: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd4c8;
   border-radius: 8px;
-  background: #f9fafb;
+  background: #faf7f2;
 }
 .admin-input:focus {
   outline: none;
-  border-color: #9ca3af;
+  border-color: #a89e93;
 }
 
 /* 관리자 버튼 */
@@ -881,20 +892,20 @@ details[open] .chev {
   padding: 8px 12px;
   font-size: 11px;
   font-weight: 600;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd4c8;
   border-radius: 8px;
   background: #fff;
   cursor: pointer;
 }
 .admin-btn:hover {
-  background: #f3f4f6;
+  background: #f5f0e8;
 }
 
 /* 로그인 상태 표시 */
 .admin-state {
   margin-top: 8px;
   font-size: 11px;
-  color: #9ca3af;
+  color: #a89e93;
   text-align: center;
 }
 
@@ -908,7 +919,7 @@ details[open] .chev {
   aspect-ratio: 16 / 9;      /* 16:9 비율 유지 */
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid #eef2f7;
+  border: 1px solid #e8e0d4;
   background: #000;
 }
 
@@ -928,7 +939,7 @@ details[open] .chev {
   padding: 24px 18px 30px;
   padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
   text-align: center;
-  color: #9ca3af;
+  color: #a89e93;
   font-size: 12px;
   background: #fff;
 }
@@ -1129,5 +1140,32 @@ details[open] .chev {
   .btn {
     font-size: 13px;
     padding: 12px 10px;
+  }
+}
+
+/* =========================
+   18) 스크롤 애니메이션
+   - Intersection Observer로 트리거
+   - .reveal 클래스: 초기 숨김 상태
+   - .reveal.visible: 나타남 상태
+========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 모션 감소 설정 사용자 대응 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

@@ -150,7 +150,7 @@ function toast(message) {
     el.style.transform = "translateX(-50%)"; // 정확한 중앙 정렬
     el.style.padding = "10px 14px";        // 내부 여백
     el.style.borderRadius = "999px";       // 둥근 모서리 (pill 형태)
-    el.style.background = "rgba(17,24,39,.92)"; // 어두운 배경 (반투명)
+    el.style.background = "rgba(44,44,44,.92)"; // 어두운 배경 (웜톤)
     el.style.color = "#fff";               // 흰색 텍스트
     el.style.fontWeight = "700";           // 굵은 글씨
     el.style.fontSize = "13px";            // 글자 크기
@@ -305,4 +305,30 @@ function toast(message) {
       }
     });
   });
+})();
+
+
+/* ============================================================
+   7. 스크롤 애니메이션 (Intersection Observer)
+   ============================================================
+   .reveal 클래스가 붙은 섹션이 뷰포트에 진입하면
+   .visible 클래스를 추가하여 페이드인 + 슬라이드업 효과를 적용합니다.
+   ============================================================ */
+(function initReveal() {
+  const reveals = document.querySelectorAll(".reveal");
+  if (!reveals.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // 한 번만 실행
+        }
+      });
+    },
+    { threshold: 0.12 } // 12% 이상 보이면 트리거
+  );
+
+  reveals.forEach((el) => observer.observe(el));
 })();
