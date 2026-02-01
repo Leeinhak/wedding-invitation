@@ -318,28 +318,9 @@
         <h2 class="h2 center">오시는 길</h2>
 
         <div class="grid">
-          <!-- 지도 탭 -->
-          <div class="map-tabs">
-            <div class="tab-buttons">
-              <button class="tab-btn active" type="button" data-tab="naver">네이버 지도</button>
-              <button class="tab-btn" type="button" data-tab="kakao">카카오 지도</button>
-            </div>
-
-            <!-- 네이버 지도 (기본 선택) -->
-            <div class="tab-content active" id="tab-naver">
-              <div class="map">
-                <!-- 네이버 지도 iframe을 여기에 삽입 -->
-                네이버 지도 영역
-              </div>
-            </div>
-
-            <!-- 카카오 지도 -->
-            <div class="tab-content" id="tab-kakao">
-              <div class="map">
-                <!-- 카카오 지도 iframe을 여기에 삽입 -->
-                카카오 지도 영역
-              </div>
-            </div>
+          <!-- 카카오 지도 -->
+          <div class="map">
+            <div id="kakao-map" style="width:100%;height:100%;"></div>
           </div>
 
           <div class="card">
@@ -946,6 +927,9 @@
     renderPhotos(cachedPhotos);
   });
 </script>
+
+  <!-- 카카오 지도 SDK -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ec50c04f34491cd632352dd0f3e218c6&autoload=false"></script>
 
   <!-- 기타 JavaScript (D-day, 클립보드, 공유, 라이트박스) -->
   <script src="script.js"></script>

@@ -276,34 +276,37 @@ function toast(message) {
 
 
 /* ============================================================
-   6. 지도 탭 전환
+   6. 카카오 지도 초기화
    ============================================================
-   카카오 지도 / 네이버 지도 탭을 클릭하면 해당 지도로 전환합니다.
+   페이지 로드 시 카카오 지도를 생성하고 마커를 표시합니다.
    ============================================================ */
-(function initMapTabs() {
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
+(function initKakaoMap() {
+  if (typeof kakao === "undefined" || !kakao.maps) return;
 
-  // 탭 버튼이 없으면 초기화 중단
-  if (!tabButtons.length) return;
+  kakao.maps.load(function () {
+    const container = document.getElementById("kakao-map");
+    if (!container) return;
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const tabId = btn.dataset.tab; // data-tab 속성값 (kakao 또는 naver)
+    // 빌라드지디 수서 좌표 (서울 강남구 밤고개로21길 79)
+    const coords = new kakao.maps.LatLng(37.4881, 127.1028);
 
-      // 모든 버튼에서 active 제거
-      tabButtons.forEach((b) => b.classList.remove("active"));
-      // 클릭된 버튼에 active 추가
-      btn.classList.add("active");
-
-      // 모든 콘텐츠 숨기기
-      tabContents.forEach((content) => content.classList.remove("active"));
-      // 해당 탭 콘텐츠 표시
-      const targetContent = document.getElementById("tab-" + tabId);
-      if (targetContent) {
-        targetContent.classList.add("active");
-      }
+    const map = new kakao.maps.Map(container, {
+      center: coords,
+      level: 3,
     });
+
+    // 마커 표시
+    const marker = new kakao.maps.Marker({
+      position: coords,
+      map: map,
+    });
+
+    // 인포윈도우
+    const infowindow = new kakao.maps.InfoWindow({
+      content:
+        '<div style="padding:5px 10px;font-size:12px;white-space:nowrap;">빌라드지디 수서<br>르씨엘홀</div>',
+    });
+    infowindow.open(map, marker);
   });
 })();
 
