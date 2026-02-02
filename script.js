@@ -278,36 +278,61 @@ function toast(message) {
 /* ============================================================
    6. 카카오 지도 초기화
    ============================================================
-   페이지 로드 시 카카오 지도를 생성하고 마커를 표시합니다.
+   지도 섹션이 뷰포트에 보일 때 카카오 지도를 생성합니다.
    ============================================================ */
 (function initKakaoMap() {
   if (typeof kakao === "undefined" || !kakao.maps) return;
 
-  kakao.maps.load(function () {
-    const container = document.getElementById("kakao-map");
-    if (!container) return;
+  const container = document.getElementById("kakao-map");
+  if (!container) return;
 
-    // 빌라드지디 수서 좌표 (서울 강남구 밤고개로21길 79)
-    const coords = new kakao.maps.LatLng(37.4881, 127.1028);
+  let mapCreated = false;
 
-    const map = new kakao.maps.Map(container, {
-      center: coords,
-      level: 3,
-    });
+  const observer = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !mapCreated) {
+      mapCreated = true;
+      observer.disconnect();
 
-    // 마커 표시
-    const marker = new kakao.maps.Marker({
-      position: coords,
-      map: map,
-    });
+      kakao.maps.load(function () {
+        // 기본 좌표 (서울 강남구 수서 부근)
+        var defaultCoords = new kakao.maps.LatLng(37.4741663, 127.1151009);
+        var map = new kakao.maps.Map(container, {
+          center: defaultCoords,
+          level: 3,
+        });
 
-    // 인포윈도우
-    const infowindow = new kakao.maps.InfoWindow({
-      content:
-        '<div style="padding:5px 10px;font-size:12px;white-space:nowrap;">빌라드지디 수서<br>르씨엘홀</div>',
-    });
-    infowindow.open(map, marker);
+        // 장소 검색으로 정확한 좌표 찾기
+        var ps = new kakao.maps.services.Places();
+        ps.keywordSearch("빌라드지디 수서", function (data, status) {
+          if (status === kakao.maps.services.Status.OK && data.length > 0) {
+            var place = data[0];
+            var coords = new kakao.maps.LatLng(place.y, place.x);
+
+            map.setCenter(coords);
+
+            var marker = new kakao.maps.Marker({
+              position: coords,
+              map: map,
+            });
+
+            var infowindow = new kakao.maps.InfoWindow({
+              content:
+                '<div style="padding:5px 10px;font-size:12px;white-space:nowrap;">빌라드지디 수서<br>르씨엘홀</div>',
+            });
+            infowindow.open(map, marker);
+          } else {
+            // 검색 실패 시 기본 좌표에 마커 표시
+            var marker = new kakao.maps.Marker({
+              position: defaultCoords,
+              map: map,
+            });
+          }
+        });
+      });
+    }
   });
+
+  observer.observe(container);
 })();
 
 
