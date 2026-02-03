@@ -58,6 +58,39 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         RSVP 섹션 - 참석 의사 전달
+         - 버튼 클릭 시 모달 팝업
+         - 연락처 + 참석 인원수 입력
+    ============================================================ -->
+    <section class="section rsvp-section center" aria-label="참석 의사 전달">
+      <div class="kicker">RSVP</div>
+      <h2 class="h2">참석 의사 전달</h2>
+      <p class="muted rsvp-message">
+        소중한 분들을 모시고 인생의 새로운 출발을 하려 합니다.<br/>
+        원활한 예식 준비를 위해 참석 여부를 미리 알려주시면 감사하겠습니다.
+      </p>
+      <button id="rsvp-btn" class="btn rsvp-open-btn">참석의사 전달하기</button>
+    </section>
+
+    <!-- RSVP 모달 -->
+    <div id="rsvp-modal" class="rsvp-modal hidden" aria-hidden="true">
+      <div class="rsvp-modal-overlay"></div>
+      <div class="rsvp-modal-content">
+        <h3 class="rsvp-modal-title">참석 의사 전달</h3>
+        <form id="rsvp-form" class="rsvp-form">
+          <input type="text" id="rsvp-name" class="rsvp-input" placeholder="성함 (선택)" maxlength="20">
+          <input type="tel" id="rsvp-phone" class="rsvp-input" placeholder="연락처 (010-0000-0000)" required>
+          <input type="number" id="rsvp-count" class="rsvp-input" placeholder="참석 인원" min="1" required>
+          <div id="rsvp-hint" class="muted rsvp-hint"></div>
+          <div class="rsvp-btn-row">
+            <button type="submit" class="btn rsvp-submit-btn">전달하기</button>
+            <button type="button" class="btn secondary rsvp-close-btn">닫기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- 본문 컨테이너 (좌우 패딩 적용) -->
     <div class="container">
 
@@ -73,7 +106,6 @@
         <!-- 초대 인사말 텍스트 -->
         <p class="muted" style="margin: 0 auto; max-width: 48ch;">
           저희 두 사람이 사랑과 믿음으로 한 가정을 이루려 합니다.<br/>
-          소중한 분들을 모시고 기쁜 날을 함께하고자 하오니<br/>
           귀한 걸음으로 축복해 주시면 감사하겠습니다.
         </p>
 
@@ -86,7 +118,7 @@
             <div class="parents">
               <!-- 아버지 -->
               <div class="parent">
-                <img class="parent-photo" src="./test.png" alt="아버지">
+                <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334.jpg?alt=media&token=d641d1fe-3fb6-4cbd-a2a4-d89043953138" alt="아버지">
                 <div class="parent-info">
                   <span class="parent-role">아버지</span>
                   <b>이기동</b>
@@ -94,7 +126,7 @@
               </div>
               <!-- 어머니 -->
               <div class="parent">
-                <img class="parent-photo" src="./test.png" alt="어머니">
+                <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_01.jpg?alt=media&token=7e02cd4f-4c19-41ce-b138-06ef40720087" alt="어머니">
                 <div class="parent-info">
                   <span class="parent-role">어머니</span>
                   <b>이연자</b>
@@ -115,7 +147,7 @@
             <div class="parents">
               <!-- 아버지 -->
               <div class="parent">
-                <img class="parent-photo" src="./test.png" alt="아버지">
+                <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_02.jpg?alt=media&token=29119cba-2a8c-4625-9d54-9f83c7949d20" alt="아버지">
                 <div class="parent-info">
                   <span class="parent-role">아버지</span>
                   <b>한상길</b>
@@ -123,7 +155,7 @@
               </div>
               <!-- 어머니 -->
               <div class="parent">
-                <img class="parent-photo" src="./test.png" alt="어머니">
+                <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_03.jpg?alt=media&token=8e11527c-ecac-40b5-a4a3-203fd4d044b7" alt="어머니">
                 <div class="parent-info">
                   <span class="parent-role">어머니</span>
                   <b>박경애</b>
@@ -565,7 +597,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
   import {
     getFirestore, collection, addDoc, serverTimestamp,
-    query, orderBy, limit, onSnapshot, deleteDoc, doc
+    query, orderBy, limit, onSnapshot, deleteDoc, doc,
+    getDoc, setDoc, updateDoc
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
   import {
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
@@ -590,6 +623,105 @@
   const db = getFirestore(app);       // Firestore 데이터베이스
   const auth = getAuth(app);          // Authentication
   const storage = getStorage(app);    // Storage (사진 업로드용)
+
+  // ============================================================
+  // RSVP (참석 의사 전달) 기능
+  // ============================================================
+  const rsvpBtn = document.getElementById("rsvp-btn");
+  const rsvpModal = document.getElementById("rsvp-modal");
+  const rsvpForm = document.getElementById("rsvp-form");
+  const rsvpName = document.getElementById("rsvp-name");
+  const rsvpPhone = document.getElementById("rsvp-phone");
+  const rsvpCount = document.getElementById("rsvp-count");
+  const rsvpHint = document.getElementById("rsvp-hint");
+  const rsvpCloseBtn = document.querySelector(".rsvp-close-btn");
+  const rsvpOverlay = document.querySelector(".rsvp-modal-overlay");
+
+  // 모달 열기
+  rsvpBtn.addEventListener("click", () => {
+    rsvpModal.classList.remove("hidden");
+    rsvpModal.setAttribute("aria-hidden", "false");
+    rsvpName.focus();
+  });
+
+  // 모달 닫기 함수
+  function closeRsvpModal() {
+    rsvpModal.classList.add("hidden");
+    rsvpModal.setAttribute("aria-hidden", "true");
+    rsvpForm.reset();
+    rsvpHint.textContent = "";
+  }
+
+  // 닫기 버튼 클릭
+  rsvpCloseBtn.addEventListener("click", closeRsvpModal);
+
+  // 오버레이 클릭 시 닫기
+  rsvpOverlay.addEventListener("click", closeRsvpModal);
+
+  // ESC 키로 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !rsvpModal.classList.contains("hidden")) {
+      closeRsvpModal();
+    }
+  });
+
+  // RSVP 제출
+  rsvpForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = rsvpName.value.trim();
+    const phone = rsvpPhone.value.trim();
+    const guestCount = parseInt(rsvpCount.value, 10);
+
+    // 유효성 검사
+    if (!phone) {
+      rsvpHint.textContent = "연락처를 입력해주세요.";
+      return;
+    }
+    if (!guestCount || guestCount < 1) {
+      rsvpHint.textContent = "참석 인원을 입력해주세요.";
+      return;
+    }
+
+    rsvpHint.textContent = "전달 중...";
+    rsvpForm.querySelector("button[type='submit']").disabled = true;
+
+    try {
+      await submitRsvp(name, phone, guestCount);
+      rsvpHint.textContent = "참석 의사가 전달되었습니다. 감사합니다 ❤️";
+      setTimeout(() => {
+        closeRsvpModal();
+      }, 1500);
+    } catch (err) {
+      rsvpHint.textContent = "전달 실패. 잠시 후 다시 시도해주세요.";
+      console.error(err);
+    } finally {
+      rsvpForm.querySelector("button[type='submit']").disabled = false;
+    }
+  });
+
+  /**
+   * RSVP 데이터를 Firestore에 저장
+   * - 연락처(하이픈 제거)를 문서 ID로 사용
+   * - 기존 응답이 있으면 업데이트, 없으면 새로 생성
+   */
+  async function submitRsvp(name, phone, guestCount) {
+    const phoneKey = phone.replace(/-/g, ""); // 하이픈 제거하여 문서 ID로 사용
+    const phoneDoc = doc(db, "rsvp", phoneKey);
+    const existing = await getDoc(phoneDoc);
+
+    if (existing.exists()) {
+      // 기존 응답 업데이트
+      const updateData = { guestCount, updatedAt: serverTimestamp() };
+      if (name) updateData.name = name;
+      await updateDoc(phoneDoc, updateData);
+    } else {
+      // 새 응답 생성
+      const newData = { phone, guestCount, createdAt: serverTimestamp() };
+      if (name) newData.name = name;
+      await setDoc(phoneDoc, newData);
+    }
+  }
 
   // ============================================================
   // DOM 요소 참조
