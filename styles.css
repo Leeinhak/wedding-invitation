@@ -42,6 +42,8 @@ body {
   line-height: 1.7;         /* 줄 간격 */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  word-break: keep-all;     /* 한글 단어 단위 줄바꿈 */
+  overflow-wrap: break-word; /* 긴 단어 줄바꿈 */
 }
 
 /* 이미지 기본 설정 */
@@ -1048,61 +1050,203 @@ details[open] .chev {
 }
 
 /* =========================
-   17) 초소형 화면 대응 (320px 이하)
+   17) 소형 화면 추가 대응 (350px 이하)
+   - Galaxy S 등 소형 기기
+========================= */
+@media (max-width: 350px) {
+  /* 컨테이너 패딩 대폭 축소 */
+  .container { padding: 14px 8px; }
+  .section { padding: 22px 0; }
+
+  /* 히어로 패딩 축소 */
+  .hero { padding: 20px 10px; }
+  .hero-inner { padding-bottom: 6px; }
+
+  /* 히어로 메타 정보 - 폰트 축소 */
+  .hero-meta {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* 제목 축소 */
+  .h1 { font-size: 20px; }
+  .h2 { font-size: 14px; }
+  .names { font-size: 20px; letter-spacing: 0; }
+
+  /* RSVP 섹션 */
+  .rsvp-section { padding: 20px 8px; }
+  .rsvp-message {
+    font-size: 11px;
+    padding: 0;
+    line-height: 1.6;
+  }
+  /* 작은 화면에서 br 숨기고 자연스럽게 줄바꿈 */
+  .rsvp-message br {
+    display: none;
+  }
+
+  /* 초대 인사말 br 숨김 */
+  section[aria-label="초대합니다"] .muted br {
+    display: none;
+  }
+
+  /* 일반 문단 텍스트 */
+  .muted {
+    font-size: 11px;
+  }
+
+  /* 카드 */
+  .card {
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+  .card p.muted {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* Info Row - 1열로 변경 */
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    font-size: 11px;
+  }
+  .info-row .label {
+    font-size: 10px;
+    margin-bottom: -2px;
+  }
+
+  /* 버튼 */
+  .btn {
+    padding: 10px 6px;
+    font-size: 11px;
+    border-radius: 10px;
+  }
+  .btn-row { gap: 6px; }
+
+  /* kicker 라벨 */
+  .kicker {
+    font-size: 10px;
+    letter-spacing: .1em;
+  }
+
+  /* 구분선 */
+  .divider { margin: 14px auto; }
+
+  /* Family Tree 더 콤팩트 */
+  .family-tree { gap: 6px; }
+  .parent {
+    padding: 4px 6px;
+    gap: 5px;
+  }
+  .parent-photo {
+    width: 24px;
+    height: 24px;
+  }
+  .parent-info b { font-size: 10px; }
+  .parent-role { font-size: 7px; }
+  .person { padding: 6px 10px; }
+  .person .name { font-size: 12px; }
+  .person .role { font-size: 8px; }
+  .tree-line { height: 14px; margin: 6px 0; }
+
+  /* 달력 */
+  .calendar {
+    border-spacing: 3px 4px;
+    font-size: 11px;
+  }
+  .calendar td { padding: 6px 0; border-radius: 8px; }
+  .calendar .today::after {
+    font-size: 8px;
+    bottom: -14px;
+  }
+
+  /* 계좌정보 */
+  details { padding: 8px 10px; border-radius: 14px; }
+  .account-item { padding: 8px; font-size: 11px; }
+  .copy { padding: 6px 8px; font-size: 11px; }
+
+  /* 방명록 */
+  .gb-list-wrap { padding: 10px; }
+  .gb-item { padding: 10px 12px; }
+  .gb-input { padding: 10px; font-size: 12px; }
+  .gb-form-wrap { padding: 12px; }
+}
+
+/* =========================
+   18) 초소형 화면 대응 (320px 이하)
    - iPhone SE 1세대 등
 ========================= */
 @media (max-width: 320px) {
-  .container { padding: 14px 10px; }
-  .h1 { font-size: 22px; }
-  .names { font-size: 22px; }
+  .container { padding: 12px 6px; }
+  .section { padding: 18px 0; }
+
+  .h1 { font-size: 18px; }
+  .h2 { font-size: 13px; }
+  .names { font-size: 18px; }
+
+  .hero { padding: 16px 8px; }
+  .hero-meta { font-size: 10px; }
+
+  .muted { font-size: 10px; }
+  .rsvp-message { font-size: 10px; }
+  .card p.muted { font-size: 10px; }
 
   /* Family Tree: 더 콤팩트하게 */
-  .family-tree { gap: 6px; }
+  .family-tree { gap: 4px; }
   .parent {
-    padding: 5px 8px;
-    gap: 6px;
+    padding: 4px 5px;
+    gap: 4px;
   }
   .parent-photo {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
   }
-  .parent-info b { font-size: 11px; }
-  .parent-role { font-size: 8px; }
-  .person {
-    padding: 8px 10px;
-  }
-  .person .name { font-size: 13px; }
-  .person .role { font-size: 9px; }
+  .parent-info b { font-size: 9px; }
+  .parent-role { font-size: 7px; }
+  .person { padding: 5px 8px; }
+  .person .name { font-size: 11px; }
+  .person .role { font-size: 7px; }
+  .tree-line { height: 12px; margin: 4px 0; }
 
   /* Calendar */
   .calendar {
-    border-spacing: 2px 4px;
-    font-size: 11px;
+    border-spacing: 2px 3px;
+    font-size: 10px;
   }
   .calendar td {
-    padding: 6px 0;
-    border-radius: 8px;
+    padding: 5px 0;
+    border-radius: 6px;
   }
+  .calendar .today::after { font-size: 7px; bottom: -12px; }
 
   /* Info Row: 1열로 변경 */
   .info-row {
     grid-template-columns: 1fr;
-    gap: 2px;
+    gap: 1px;
+    font-size: 10px;
   }
+  .info-row .label { font-size: 9px; }
 
   /* 버튼: 1열 전환 */
   .btn-row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 6px;
   }
   .btn {
-    font-size: 13px;
-    padding: 12px 10px;
+    font-size: 11px;
+    padding: 10px 8px;
   }
+
+  /* 카드 */
+  .card { padding: 10px 8px; }
+
+  /* kicker */
+  .kicker { font-size: 9px; }
 }
 
 /* =========================
-   18) RSVP Section & Modal
+   19) RSVP Section & Modal
    - 참석 의사 전달 섹션 및 모달
 ========================= */
 
@@ -1246,7 +1390,7 @@ details[open] .chev {
 }
 
 /* =========================
-   19) 스크롤 애니메이션
+   20) 스크롤 애니메이션
    - Intersection Observer로 트리거
    - .reveal 클래스: 초기 숨김 상태
    - .reveal.visible: 나타남 상태
