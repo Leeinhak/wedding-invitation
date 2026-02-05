@@ -104,7 +104,7 @@
         <h2 class="h1">초대합니다</h2>
         <div class="divider"></div>
         <!-- 초대 인사말 텍스트 -->
-        <p class="muted" style="margin: 0 auto; max-width: 48ch;">
+        <p class="muted" style="margin: 0 auto; max-width: 48ch; font-size: 12px;">
           저희 두 사람이 사랑과 믿음으로 한 가정을 이루려 합니다.<br/>
           귀한 걸음으로 축복해 주시면 감사하겠습니다.
         </p>
@@ -183,7 +183,7 @@
         <h2 class="h2 center">예식 안내</h2>
 
         <div class="grid">
-          <div class="card">
+          <div class="card" style="font-size: 12px;">
             <!-- 예식 안내 문구 -->
             <p class="muted center" style="margin: 0 0 14px; line-height: 1.6;">
               예식은 간소화된 기독교 예식으로 진행되며,<br/>
@@ -193,12 +193,12 @@
             </p>
             <div class="divider" style="margin-bottom: 14px;"></div>
             <!-- 일시 정보 -->
-            <div class="info-row">
+            <div class="info-row" style="font-size: 12px;">
               <div class="label">일시</div>
               <div><b>2026년 4월 11일(토) 오후 1시 30분</b></div>
             </div>
             <!-- 장소 정보 -->
-            <div class="info-row" style="margin-top: 8px;">
+            <div class="info-row" style="margin-top: 8px; font-size: 12px;">
               <div class="label">장소</div>
               <div>
                 <b>빌라드지디 수서</b><br/>
@@ -206,11 +206,11 @@
               </div>
             </div>
             <!-- 예식 진행 안내 -->
-            <div class="info-row" style="margin-top: 8px;">
+            <div class="info-row" style="margin-top: 8px; font-size: 12px;">
               <div class="label">1부 예식</div>
               <div>오후 1시 30분 ~ 2시 30분 (5층 르씨엘홀)</div>
             </div>
-            <div class="info-row" style="margin-top: 8px;">
+            <div class="info-row" style="margin-top: 8px; font-size: 12px;">
               <div class="label">2부 연회</div>
               <div>오후 2시 30분 ~ 4시 (1층 연회장)</div>
             </div>
@@ -398,7 +398,7 @@
             </div>
             <div class="info-row" style="margin-top: 10px;">
               <div class="label">주차</div>
-              <div>건물 내 주차 2시간 무료 (혼잡 시 주변 공영주차장 이용)</div>
+              <div>건물 내 주차 2시간 무료</br> (혼잡 시 주변 공영주차장 이용)</div>
             </div>
           </div>
         </div>
@@ -504,11 +504,8 @@
 
         <div class="card">
           <div class="muted" style="font-size:13px; margin-bottom:10px; text-align:center;">
-            결혼식 사진을 올려주시면 감사해요 🙏 (최대 10MB / 이미지 파일만)
+            결혼식 사진을 올려주시면 감사해요 🙏</br>(최대 10MB / 이미지 파일만)
           </div>
-
-          <input id="upName" placeholder="이름(선택)" maxlength="30"
-            style="width:100%; padding:12px; border-radius:12px; border:1px solid #e5e7eb; margin-bottom:10px;">
 
           <input id="upFile" type="file" accept="image/*" multiple
             style="width:100%; padding:12px; border-radius:12px; border:1px solid #e5e7eb; margin-bottom:10px;">
@@ -894,7 +891,6 @@
   // - Firebase Storage에 이미지 업로드
   // - Firestore에 메타데이터 저장 (업로더 이름, 파일명, URL, 날짜)
   // ============================================================
-  const upName = document.getElementById("upName");
   const upFile = document.getElementById("upFile");
   const upBtn = document.getElementById("upBtn");
   const upProgWrap = document.getElementById("upProgWrap");
@@ -906,7 +902,6 @@
 
   upBtn.addEventListener("click", async () => {
     const files = upFile.files;
-    const uploaderName = upName.value.trim() || "익명";
 
     // 파일 선택 확인
     if (!files || files.length === 0) {
@@ -960,7 +955,6 @@
             async () => {
               // Firestore에 메타데이터 저장 (URL은 관리자만 조회 가능하므로 경로만 저장)
               await addDoc(collection(db, "photos"), {
-                uploaderName,
                 fileName: file.name,
                 filePath,
                 fileSize: file.size,
@@ -1021,9 +1015,8 @@
       <div style="max-height:250px; overflow-y:auto;">
         ${photos.map(p => `
           <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eef2f7;">
-            <div style="font-size:13px; flex:1; min-width:0;">
-              <b>${escapeHtml(p.uploaderName)}</b>
-              <span class="muted" style="margin-left:6px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(p.fileName)}</span>
+            <div style="font-size:13px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              ${escapeHtml(p.fileName)}
             </div>
             ${isAdmin ? `<a href="${p.downloadURL}" target="_blank" download="${p.fileName}" class="btn" style="padding:6px 12px; font-size:12px; margin-left:8px; flex-shrink:0;">다운로드</a>` : ''}
           </div>

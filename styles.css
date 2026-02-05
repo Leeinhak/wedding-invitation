@@ -367,6 +367,7 @@ button { font: inherit; cursor: pointer; }
   font-size: 14px;
   box-shadow: 0 4px 16px rgba(58, 54, 50, 0.15);
   transition: transform .15s ease, box-shadow .15s ease;
+  text-align: center;
 }
 .btn:active {
   transform: translateY(1px);
@@ -398,6 +399,7 @@ button { font: inherit; cursor: pointer; }
   color: #8c8279;
   font-weight: 650;
   padding-bottom: 4px;
+  width: calc(100% / 7);    /* 7등분 고정 너비 */
 }
 
 /* 날짜 셀 */
@@ -408,6 +410,8 @@ button { font: inherit; cursor: pointer; }
   background: #faf7f2;
   border: 1px solid #e8e0d4;
   color: #2c2c2c;
+  width: calc(100% / 7);    /* 7등분 고정 너비 */
+  box-sizing: border-box;
 }
 
 /* 빈 셀 (해당 월이 아닌 날짜) */
@@ -898,10 +902,10 @@ details[open] .chev {
 }
 
 /* =========================
-   16) 400px 이하에서 br 숨김
+   16) 420px 이하에서 br 숨김
    - 긴 텍스트 자연스러운 줄바꿈
 ========================= */
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .rsvp-message br,
   section[aria-label="초대합니다"] .muted br {
     display: none;
@@ -955,15 +959,21 @@ details[open] .chev {
 
   /* Calendar: 간격 축소 */
   .calendar {
-    border-spacing: 4px 6px;
-    font-size: 12px;
+    border-spacing: 3px 5px;
+    font-size: 11px;
   }
+  .calendar th,
   .calendar td {
-    padding: 8px 0;
+    width: calc(100% / 7);
+    padding: 7px 0;
+  }
+  .calendar .today .heart {
+    font-size: 8px;
+    margin-left: 0;
   }
   .calendar .today::after {
-    font-size: 9px;
-    bottom: -16px;
+    font-size: 8px;
+    bottom: -14px;
   }
 
   /* Info Row: 라벨 너비 축소 */
