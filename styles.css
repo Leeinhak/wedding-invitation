@@ -907,7 +907,8 @@ details[open] .chev {
 ========================= */
 @media (max-width: 420px) {
   .rsvp-message br,
-  section[aria-label="초대합니다"] .muted br {
+  section[aria-label="초대합니다"] .muted br,
+  section[aria-label="교통 안내"] .info-row br {
     display: none;
   }
 }
