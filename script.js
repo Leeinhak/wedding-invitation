@@ -360,3 +360,79 @@ function toast(message) {
 
   reveals.forEach((el) => observer.observe(el));
 })();
+
+
+/* ============================================================
+   8. 지도 앱 열기
+   ============================================================
+   지도 앱을 열고, 앱이 설치되어 있지 않으면 스토어로 연결합니다.
+   - 네이버 지도, 카카오맵, T map 지원
+   - iOS/Android 자동 감지하여 적절한 스토어로 연결
+   ============================================================ */
+function openMapApp(type) {
+  // 빌라드지디 수서 좌표
+  const lat = 37.4741663;
+  const lng = 127.1151009;
+  const name = "빌라드지디 수서";
+  const address = "서울 강남구 밤고개로21길 79";
+
+  // iOS 여부 확인
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  // 각 앱별 설정
+  const apps = {
+    naver: {
+      // 네이버 지도 앱 URL (길찾기)
+      appUrl: `nmap://route/public?dlat=${lat}&dlng=${lng}&dname=${encodeURIComponent(name)}&appname=wedding`,
+      // 웹 URL (fallback)
+      webUrl: `https://map.naver.com/v5/search/${encodeURIComponent(address + " " + name)}`,
+      // 스토어 URL
+      iosStore: "https://apps.apple.com/kr/app/naver-map-navigation/id311867728",
+      androidStore: "https://play.google.com/store/apps/details?id=com.nhn.android.nmap"
+    },
+    kakao: {
+      // 카카오맵 앱 URL (길찾기)
+      appUrl: `kakaomap://route?ep=${lat},${lng}&by=PUBLICTRANSIT`,
+      // 웹 URL (fallback)
+      webUrl: `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`,
+      // 스토어 URL
+      iosStore: "https://apps.apple.com/kr/app/kakaomap/id304608425",
+      androidStore: "https://play.google.com/store/apps/details?id=net.daum.android.map"
+    },
+    tmap: {
+      // T map 앱 URL (길찾기)
+      appUrl: `tmap://route?goalname=${encodeURIComponent(name)}&goalx=${lng}&goaly=${lat}`,
+      // 웹 URL (T map은 웹 미지원, 스토어로 연결)
+      webUrl: null,
+      // 스토어 URL
+      iosStore: "https://apps.apple.com/kr/app/t-map/id431589174",
+      androidStore: "https://play.google.com/store/apps/details?id=com.skt.tmap.ku"
+    }
+  };
+
+  const app = apps[type];
+  if (!app) return;
+
+  // 스토어 URL 선택
+  const storeUrl = isIOS ? app.iosStore : app.androidStore;
+
+  // 앱 열기 시도
+  const startTime = Date.now();
+
+  // 앱 URL로 이동 시도
+  window.location.href = app.appUrl;
+
+  // 일정 시간 후에도 페이지에 있으면 앱이 없는 것으로 판단
+  setTimeout(function() {
+    // 2초 이상 지났으면 이미 앱이 열린 것
+    if (Date.now() - startTime > 2000) return;
+
+    // 앱이 없으면 스토어 또는 웹으로 연결
+    if (confirm(type === 'naver' ? '네이버 지도' : type === 'kakao' ? '카카오맵' : 'T map' + ' 앱이 설치되어 있지 않습니다.\n앱스토어로 이동하시겠습니까?')) {
+      window.location.href = storeUrl;
+    } else if (app.webUrl) {
+      // 웹 버전이 있으면 웹으로 열기
+      window.open(app.webUrl, '_blank');
+    }
+  }, 1500);
+}
