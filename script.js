@@ -11,9 +11,64 @@
  * 3. 공유하기 - Web Share API 또는 링크 복사
  * 4. 토스트 알림 - 사용자에게 피드백 메시지 표시
  * 5. 라이트박스 - 갤러리 이미지 확대 보기
+ * 6. 인앱 브라우저 감지 - 카카오톡 등에서 외부 브라우저로 유도
  *
  * 참고: Firebase 관련 코드(RSVP, 방명록, 사진 업로드)는 index.html 내에 인라인으로 작성됨
  */
+
+
+/* ============================================================
+   0. 카카오톡 인앱 브라우저 감지 및 외부 브라우저 열기
+   ============================================================ */
+(function initInAppBanner() {
+  const ua = navigator.userAgent.toLowerCase();
+
+  // 카카오톡, 라인, 페이스북, 인스타그램 인앱 브라우저 감지
+  const isInApp = /kakaotalk|line|fbav|fban|instagram/i.test(ua);
+
+  if (!isInApp) return;
+
+  const banner = document.getElementById("inapp-banner");
+  const openBtn = document.getElementById("open-external-btn");
+  const closeBtn = document.getElementById("close-banner-btn");
+
+  if (!banner) return;
+
+  // 배너 표시
+  banner.style.display = "block";
+  document.body.style.paddingTop = "80px"; // 배너 높이만큼 여백 추가
+
+  // 닫기 버튼
+  closeBtn.addEventListener("click", () => {
+    banner.style.display = "none";
+    document.body.style.paddingTop = "0";
+  });
+
+  // 외부 브라우저로 열기 버튼
+  openBtn.addEventListener("click", () => {
+    const currentUrl = window.location.href;
+
+    // Android - Intent URL로 Chrome 열기 시도
+    if (/android/i.test(ua)) {
+      window.location.href = "intent://" + currentUrl.replace(/https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
+      return;
+    }
+
+    // iOS - 클립보드에 복사 후 안내
+    if (/iphone|ipad|ipod/i.test(ua)) {
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        alert("링크가 복사되었습니다.\nSafari를 열고 주소창에 붙여넣기 해주세요.");
+      }).catch(() => {
+        // 클립보드 실패 시 프롬프트로 표시
+        prompt("아래 링크를 복사하여 Safari에서 열어주세요:", currentUrl);
+      });
+      return;
+    }
+
+    // 기타 - 새 창 시도
+    window.open(currentUrl, "_blank");
+  });
+})();
 
 
 /* ============================================================
