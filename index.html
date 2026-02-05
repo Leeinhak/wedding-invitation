@@ -982,14 +982,7 @@
           );
         });
 
-        // Firestore에 메타데이터 저장 (filePath만 저장, URL은 관리자가 Firebase Console에서 확인)
-        await addDoc(collection(db, "photos"), {
-          fileName: file.name,
-          filePath,
-          fileSize: file.size,
-          createdAt: serverTimestamp()
-        });
-
+        // 업로드 성공
         completed++;
 
       } catch (e) {
