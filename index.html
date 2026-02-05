@@ -939,13 +939,16 @@
 
     let completed = 0;
     const total = files.length;
+    let fileIndex = 0;
 
     for (const file of files) {
       try {
-        // 고유한 파일명 생성 (timestamp + 원본파일명)
+        // 고유한 파일명 생성 (timestamp + index + random + 원본파일명)
         const timestamp = Date.now();
+        const random = Math.random().toString(36).substring(2, 8);
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const filePath = `wedding_uploads/${timestamp}_${safeName}`;
+        const filePath = `wedding_uploads/${timestamp}_${fileIndex}_${random}_${safeName}`;
+        fileIndex++;
         const storageRef = ref(storage, filePath);
 
         // 업로드 시작 (진행률 추적)
@@ -965,11 +968,15 @@
               reject(error);
             },
             async () => {
-              // Firestore에 메타데이터 저장 (URL은 관리자만 조회 가능하므로 경로만 저장)
+              // 다운로드 URL 가져오기
+              const downloadURL = await getDownloadURL(storageRef);
+
+              // Firestore에 메타데이터 저장
               await addDoc(collection(db, "photos"), {
                 fileName: file.name,
                 filePath,
                 fileSize: file.size,
+                downloadURL,
                 createdAt: serverTimestamp()
               });
 
