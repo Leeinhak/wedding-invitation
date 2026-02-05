@@ -621,7 +621,7 @@
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
   import {
-    getStorage, ref, uploadBytesResumable, getDownloadURL
+    getStorage, ref, uploadBytesResumable
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
   // ⚠️ Firebase 설정 - 본인 프로젝트 값으로 교체 필요
@@ -982,15 +982,11 @@
           );
         });
 
-        // 다운로드 URL 가져오기
-        const downloadURL = await getDownloadURL(storageRef);
-
-        // Firestore에 메타데이터 저장
+        // Firestore에 메타데이터 저장 (filePath만 저장, URL은 관리자가 Firebase Console에서 확인)
         await addDoc(collection(db, "photos"), {
           fileName: file.name,
           filePath,
           fileSize: file.size,
-          downloadURL,
           createdAt: serverTimestamp()
         });
 
