@@ -942,11 +942,14 @@
     upHint.textContent = "";
 
     let completed = 0;
+    let failed = 0;
     const total = files.length;
     const fileArray = Array.from(files);
 
     for (let i = 0; i < fileArray.length; i++) {
       const file = fileArray[i];
+      const currentFileNum = i + 1;
+
       try {
         // 고유한 파일명 생성 (timestamp + index + random + 원본파일명)
         const timestamp = Date.now();
@@ -956,8 +959,11 @@
         const storageRef = ref(storage, filePath);
 
         // 업로드 시작 (진행률 추적)
+        upStatus.textContent = `업로드 중... ${currentFileNum}/${total}`;
+
         const uploadTask = uploadBytesResumable(storageRef, file);
 
+        // 업로드 완료 대기
         await new Promise((resolve, reject) => {
           uploadTask.on("state_changed",
             (snapshot) => {
@@ -965,42 +971,48 @@
               const fileProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               const overallProgress = ((completed + fileProgress / 100) / total) * 100;
               upProg.style.width = overallProgress + "%";
-              upStatus.textContent = `업로드 중... ${completed + 1}/${total} (${Math.round(fileProgress)}%)`;
+              upStatus.textContent = `업로드 중... ${currentFileNum}/${total} (${Math.round(fileProgress)}%)`;
             },
             (error) => {
-              console.error("업로드 에러:", error);
               reject(error);
             },
             () => {
-              // 업로드 완료 - resolve만 호출
-              resolve(storageRef);
+              resolve();
             }
           );
-        }).then(async (storageRefResult) => {
-          // 다운로드 URL 가져오기
-          const downloadURL = await getDownloadURL(storageRefResult);
-
-          // Firestore에 메타데이터 저장
-          await addDoc(collection(db, "photos"), {
-            fileName: file.name,
-            filePath,
-            fileSize: file.size,
-            downloadURL,
-            createdAt: serverTimestamp()
-          });
-
-          completed++;
         });
+
+        // 다운로드 URL 가져오기
+        const downloadURL = await getDownloadURL(storageRef);
+
+        // Firestore에 메타데이터 저장
+        await addDoc(collection(db, "photos"), {
+          fileName: file.name,
+          filePath,
+          fileSize: file.size,
+          downloadURL,
+          createdAt: serverTimestamp()
+        });
+
+        completed++;
+
       } catch (e) {
-        console.error("업로드 실패:", e);
-        upHint.textContent = `업로드 실패: ${file.name}`;
+        console.error("업로드 실패:", file.name, e);
+        failed++;
       }
+
+      // 진행률 업데이트
+      upProg.style.width = ((completed + failed) / total * 100) + "%";
     }
 
     // 완료
     upProg.style.width = "100%";
     upStatus.textContent = "업로드 완료!";
-    upHint.textContent = `${completed}개의 사진이 업로드되었습니다 ❤️`;
+    if (failed > 0) {
+      upHint.textContent = `${completed}개 성공, ${failed}개 실패`;
+    } else {
+      upHint.textContent = `${completed}개의 사진이 업로드되었습니다 ❤️`;
+    }
     upFile.value = "";
     upBtn.disabled = false;
 
