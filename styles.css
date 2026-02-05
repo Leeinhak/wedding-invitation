@@ -898,7 +898,18 @@ details[open] .chev {
 }
 
 /* =========================
-   16) 소형 화면 대응 (390px 이하)
+   16) 400px 이하에서 br 숨김
+   - 긴 텍스트 자연스러운 줄바꿈
+========================= */
+@media (max-width: 400px) {
+  .rsvp-message br,
+  section[aria-label="초대합니다"] .muted br {
+    display: none;
+  }
+}
+
+/* =========================
+   17) 소형 화면 대응 (390px 이하)
    - Galaxy S23, iPhone SE 등
 ========================= */
 @media (max-width: 390px) {
@@ -1050,7 +1061,7 @@ details[open] .chev {
 }
 
 /* =========================
-   17) 소형 화면 추가 대응 (350px 이하)
+   18) 소형 화면 추가 대응 (350px 이하)
    - Galaxy S 등 소형 기기
 ========================= */
 @media (max-width: 350px) {
@@ -1079,15 +1090,6 @@ details[open] .chev {
     font-size: 11px;
     padding: 0;
     line-height: 1.6;
-  }
-  /* 작은 화면에서 br 숨기고 자연스럽게 줄바꿈 */
-  .rsvp-message br {
-    display: none;
-  }
-
-  /* 초대 인사말 br 숨김 */
-  section[aria-label="초대합니다"] .muted br {
-    display: none;
   }
 
   /* 일반 문단 텍스트 */
@@ -1174,7 +1176,7 @@ details[open] .chev {
 }
 
 /* =========================
-   18) 초소형 화면 대응 (320px 이하)
+   19) 초소형 화면 대응 (320px 이하)
    - iPhone SE 1세대 등
 ========================= */
 @media (max-width: 320px) {
@@ -1246,7 +1248,7 @@ details[open] .chev {
 }
 
 /* =========================
-   19) RSVP Section & Modal
+   20) RSVP Section & Modal
    - 참석 의사 전달 섹션 및 모달
 ========================= */
 
@@ -1390,7 +1392,7 @@ details[open] .chev {
 }
 
 /* =========================
-   20) 스크롤 애니메이션
+   21) 스크롤 애니메이션
    - Intersection Observer로 트리거
    - .reveal 클래스: 초기 숨김 상태
    - .reveal.visible: 나타남 상태
