@@ -532,10 +532,6 @@
           </div>
 
           <div id="upHint" class="muted" style="margin-top:10px; font-size:13px; text-align:center;"></div>
-
-          <button class="btn secondary" id="togglePhotoList" type="button" style="margin-top:12px; width:100%;">📷 업로드된 사진 목록보기</button>
-
-          <div id="photoListWrap" style="margin-top:12px; display:none;"></div>
         </div>
       </section>
 
@@ -894,8 +890,6 @@
   onAuthStateChanged(auth, (user) => {
     isAdmin = !!user;
     adminState.textContent = isAdmin ? `관리자 로그인됨: ${user.email}` : "관리자 로그아웃 상태";
-    // 관리자 상태 변경 시 사진 목록 다시 렌더링 (다운로드 버튼 표시/숨김)
-    refreshPhotoList();
   });
 
   // ============================================================
@@ -1006,66 +1000,6 @@
     }, 2000);
   });
 
-  // ============================================================
-  // 업로드된 사진 목록
-  // - 목록은 모두 볼 수 있음 (최대 30개)
-  // - 다운로드는 관리자만 가능
-  // ============================================================
-  const photoListWrap = document.getElementById("photoListWrap");
-  const togglePhotoListBtn = document.getElementById("togglePhotoList");
-  let photoListVisible = false;
-  let cachedPhotos = []; // 사진 목록 캐시 (관리자 상태 변경 시 재렌더링용)
-
-  // 목록보기 버튼 클릭
-  togglePhotoListBtn.addEventListener("click", () => {
-    photoListVisible = !photoListVisible;
-    photoListWrap.style.display = photoListVisible ? "block" : "none";
-    togglePhotoListBtn.textContent = photoListVisible
-      ? `📷 목록 닫기 (${cachedPhotos.length})`
-      : `📷 업로드된 사진 목록보기 (${cachedPhotos.length})`;
-  });
-
-  // 사진 목록 렌더링 함수
-  function renderPhotos(photos) {
-    if (photos.length === 0) {
-      photoListWrap.innerHTML = "<div class='muted center' style='padding:12px;'>업로드된 사진이 없습니다.</div>";
-      return;
-    }
-
-    photoListWrap.innerHTML = `
-      <div style="max-height:250px; overflow-y:auto;">
-        ${photos.map(p => `
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eef2f7;">
-            <div style="font-size:13px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
-              ${escapeHtml(p.fileName)}
-            </div>
-            ${isAdmin ? `<a href="${p.downloadURL}" target="_blank" download="${p.fileName}" class="btn" style="padding:6px 12px; font-size:12px; margin-left:8px; flex-shrink:0;">다운로드</a>` : ''}
-          </div>
-        `).join("")}
-      </div>
-    `;
-  }
-
-  // 관리자 상태 변경 시 호출 (다운로드 버튼 표시/숨김 갱신)
-  function refreshPhotoList() {
-    renderPhotos(cachedPhotos);
-  }
-
-  // 실시간 리스너로 사진 목록 가져오기 (최대 30개)
-  const photosQuery = query(collection(db, "photos"), orderBy("createdAt", "desc"), limit(30));
-
-  onSnapshot(photosQuery, (snap) => {
-    cachedPhotos = [];
-    snap.forEach((d) => cachedPhotos.push({ id: d.id, ...d.data() }));
-
-    // 버튼 텍스트 업데이트
-    togglePhotoListBtn.textContent = photoListVisible
-      ? `📷 목록 닫기 (${cachedPhotos.length})`
-      : `📷 업로드된 사진 목록보기 (${cachedPhotos.length})`;
-
-    // 목록 렌더링
-    renderPhotos(cachedPhotos);
-  });
 </script>
 
   <!-- 카카오 지도 SDK -->
