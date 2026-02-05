@@ -939,16 +939,16 @@
 
     let completed = 0;
     const total = files.length;
-    let fileIndex = 0;
+    const fileArray = Array.from(files);
 
-    for (const file of files) {
+    for (let i = 0; i < fileArray.length; i++) {
+      const file = fileArray[i];
       try {
         // 고유한 파일명 생성 (timestamp + index + random + 원본파일명)
         const timestamp = Date.now();
         const random = Math.random().toString(36).substring(2, 8);
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const filePath = `wedding_uploads/${timestamp}_${fileIndex}_${random}_${safeName}`;
-        fileIndex++;
+        const filePath = `wedding_uploads/${timestamp}_${i}_${random}_${safeName}`;
         const storageRef = ref(storage, filePath);
 
         // 업로드 시작 (진행률 추적)
@@ -967,23 +967,25 @@
               console.error("업로드 에러:", error);
               reject(error);
             },
-            async () => {
-              // 다운로드 URL 가져오기
-              const downloadURL = await getDownloadURL(storageRef);
-
-              // Firestore에 메타데이터 저장
-              await addDoc(collection(db, "photos"), {
-                fileName: file.name,
-                filePath,
-                fileSize: file.size,
-                downloadURL,
-                createdAt: serverTimestamp()
-              });
-
-              completed++;
-              resolve();
+            () => {
+              // 업로드 완료 - resolve만 호출
+              resolve(storageRef);
             }
           );
+        }).then(async (storageRefResult) => {
+          // 다운로드 URL 가져오기
+          const downloadURL = await getDownloadURL(storageRefResult);
+
+          // Firestore에 메타데이터 저장
+          await addDoc(collection(db, "photos"), {
+            fileName: file.name,
+            filePath,
+            fileSize: file.size,
+            downloadURL,
+            createdAt: serverTimestamp()
+          });
+
+          completed++;
         });
       } catch (e) {
         console.error("업로드 실패:", e);
