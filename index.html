@@ -24,20 +24,21 @@
   <meta property="og:url" content="https://leeinhak.github.io/wedding-invitation/" />
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754" />
 
-  <!-- 카카오 -->  
-  <title>Kakao JavaScript SDK</title>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js"
-    integrity="sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1" crossorigin="anonymous"></script>
+    <!-- 카카오 -->  
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.7/kakao.min.js" integrity="sha384-tJkjbtDbvoxO+diRuDtwRO9JXR7pjWnfjfRn5ePUpl7e7RJCxKCwwnfqUAdXh53p" crossorigin="anonymous"></script>
   <script>
-    Kakao.init('ec50c04f34491cd632352dd0f3e218c6');
-    // SDK 초기화 여부를 판단합니다.
-    Kakao.isInitialized();
-    
-    // 메세지 꾸미는 부분
+    Kakao.init('ec50c04f34491cd632352dd0f3e218c6');  // 사용하려는 앱의 JavaScript 키 입력
+  </script>
+  <a id="kakaotalk-sharing-btn" href="javascript:;">
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+      alt="카카오톡 공유 보내기 버튼" />
+  </a>
+
+  <script>
     Kakao.Share.createCustomButton({
-    container: '#kakaotalk-sharing-btn',
-    templateId: 129060,  // 공유 할 메시지 템플릿 ID 입력
-    })
+      container: '#kakaotalk-sharing-btn',
+      templateId: 129060,  // 공유 할 메시지 템플릿 ID 입력
+    });
   </script>
 
   <title>모바일 청첩장</title>
@@ -620,11 +621,6 @@
     <footer class="footer">
       © 2026 Wedding Invitation · Made with ❤️
     </footer>
-
-    <a id="kakaotalk-sharing-btn" href="javascript:;">
-      <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-    alt="카카오톡 공유 보내기 버튼" />
-</a>
   </main>
 
   <!-- ============================================================
