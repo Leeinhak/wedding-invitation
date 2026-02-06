@@ -27,13 +27,19 @@
   <!-- 카카오 -->  
   <title>Kakao JavaScript SDK</title>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js"
-    integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script>
+    integrity="sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1" crossorigin="anonymous"></script>
   <script>
     // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
-    Kakao.init('JAVASCRIPT_KEY');
+    Kakao.init('ec50c04f34491cd632352dd0f3e218c6');
 
     // SDK 초기화 여부를 판단합니다.
     console.log(Kakao.isInitialized());
+
+    // Create Custom Button
+    Kakao.Share.createCustomButton({
+      container: '#kakaotalk-share-btn',
+      templateId: 1378608,
+    });
   </script>
 
   <title>모바일 청첩장</title>
@@ -46,17 +52,6 @@
 </head>
 
 <body>
-  <script>
-          Kakao.Share.createCustomButton({
-      container: '#kakaotalk-share-btn',
-      templateId: 1378608,
-      templateArgs: {
-        title: '제목 영역입니다.',
-        description: '설명 영역입니다.',
-      },
-    });
-  </script>
-
   <!-- ============================================================
        카카오톡 인앱 브라우저 안내 배너
        - 카카오톡에서 열었을 때 외부 브라우저로 열기 유도
