@@ -21,7 +21,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="이인학 ♥ 한예린 모바일 청첩장" />
   <meta property="og:description" content="2026년 4월 11일(토) 오후 1시 30분 · 빌라드지디 수서 5층 르씨엘홀" />
-  <meta property="og:url" content="https://USERNAME.github.io/wedding/" />
+  <meta property="og:url" content="https://leeinhak.github.io/wedding-invitation/" />
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754" />
 
   <!-- 카카오 -->  
@@ -29,17 +29,34 @@
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js"
     integrity="sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1" crossorigin="anonymous"></script>
   <script>
-    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
-    Kakao.init('ec50c04f34491cd632352dd0f3e218c6');
-
+    Kakao.init('APP KEY');
     // SDK 초기화 여부를 판단합니다.
-    console.log(Kakao.isInitialized());
-
-    // Create Custom Button
-    Kakao.Share.createCustomButton({
-      container: '#kakaotalk-share-btn',
-      templateId: 1378608,
-    });
+    Kakao.isInitialized();
+    
+    // 메세지 꾸미는 부분
+    Kakao.Share.sendDefault({
+        objectType: 'feed', // 이미지 + 텍스트의 경우 feed
+        content: {
+        title: '인학🤍예린 결혼합니다.', // 원하는 타이틀
+        description: '2026.04.11\n13시 30분 빌라드지디 수서', // 텍스트
+        imageUrl: 'https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/34_KB_00827-.jpg?alt=media&token=b0f5f50f-6a06-438e-9f4f-200f211da87b', //이미지 링크
+        link: {
+            mobileWebUrl: 'https://leeinhak.github.io/wedding-invitation/', // 연결될 모바일 웹 링크
+            webUrl: 'https://leeinhak.github.io/wedding-invitation/', // 연결될 pc 웹 링크
+        },
+        },
+        buttons: [
+        {
+            title: '모바일 청첩장 보기', // 메세지 내에 버튼에 쓰여질 텍스트
+            link: {
+            mobileWebUrl: 'https://leeinhak.github.io/wedding-invitation/', // 연결될 모바일 웹 링크
+            webUrl: 'https://leeinhak.github.io/wedding-invitation/', // 연결될 모바일 웹 링크
+            },
+        },
+        ],
+        // 카카오톡 미설치 시 카카오톡 설치 경로이동
+        installTalk: true,
+    })
   </script>
 
   <title>모바일 청첩장</title>
