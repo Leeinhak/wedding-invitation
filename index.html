@@ -24,22 +24,8 @@
   <meta property="og:url" content="https://leeinhak.github.io/wedding-invitation/" />
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754" />
 
-    <!-- 카카오 -->  
+  <!-- 카카오 SDK -->
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.7/kakao.min.js" integrity="sha384-tJkjbtDbvoxO+diRuDtwRO9JXR7pjWnfjfRn5ePUpl7e7RJCxKCwwnfqUAdXh53p" crossorigin="anonymous"></script>
-  <script>
-    Kakao.init('ec50c04f34491cd632352dd0f3e218c6');  // 사용하려는 앱의 JavaScript 키 입력
-  </script>
-  <a id="kakaotalk-sharing-btn" href="javascript:;">
-    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-      alt="카카오톡 공유 보내기 버튼" />
-  </a>
-
-  <script>
-    Kakao.Share.createCustomButton({
-      container: '#kakaotalk-sharing-btn',
-      templateId: 129060,  // 공유 할 메시지 템플릿 ID 입력
-    });
-  </script>
 
   <title>모바일 청첩장</title>
   <!-- Google Fonts: 세리프(제목용) + 본문용 -->
@@ -596,30 +582,28 @@
       </section>
     </div>
 
-    <!-- ============================================================
-         관리자 영역
-         - 푸터 위에 작게 배치
-         - 기본적으로 접혀있고, 클릭하면 로그인 폼 표시
-         - Firebase Authentication으로 관리자 로그인
-         - 로그인 시 방명록 삭제 버튼 활성화
-    ============================================================ -->
-    <div class="admin-section">
-      <details class="admin-toggle">
-        <summary class="admin-summary">관리자</summary>
-        <div class="admin-content">
-          <input id="adminEmail" class="admin-input" placeholder="이메일" type="email">
-          <input id="adminPass" class="admin-input" placeholder="비밀번호" type="password">
-          <button class="admin-btn" type="button" id="adminLogin">로그인</button>
-          <button class="admin-btn" type="button" id="adminLogout">로그아웃</button>
-        </div>
-        <!-- 로그인 상태 표시 -->
-        <div id="adminState" class="admin-state"></div>
-      </details>
-    </div>
-
-    <!-- 푸터 -->
+    <!-- 푸터 영역 (관리자 + 카카오 공유 + 저작권) -->
     <footer class="footer">
-      © 2026 Wedding Invitation · Made with ❤️
+      <div class="footer-actions">
+        <!-- 카카오톡 공유 버튼 -->
+        <button id="kakaotalk-sharing-btn" class="footer-btn kakao-share-btn" type="button" title="카카오톡 공유">
+          <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="카카오톡 공유">
+        </button>
+        <!-- 관리자 버튼 -->
+        <details class="admin-toggle">
+          <summary class="footer-btn admin-summary" title="관리자">관리자</summary>
+          <div class="admin-popup">
+            <input id="adminEmail" class="admin-input" placeholder="이메일" type="email">
+            <input id="adminPass" class="admin-input" placeholder="비밀번호" type="password">
+            <div class="admin-btn-row">
+              <button class="admin-btn" type="button" id="adminLogin">로그인</button>
+              <button class="admin-btn" type="button" id="adminLogout">로그아웃</button>
+            </div>
+            <div id="adminState" class="admin-state"></div>
+          </div>
+        </details>
+      </div>
+      <div class="footer-copyright">© 2026 Wedding Invitation</div>
     </footer>
   </main>
 
@@ -1042,5 +1026,19 @@
 
   <!-- 기타 JavaScript (D-day, 클립보드, 공유, 라이트박스) -->
   <script src="script.js"></script>
+
+  <!-- 카카오톡 공유 버튼 초기화 -->
+  <script>
+    // 카카오 SDK 초기화 및 공유 버튼 설정
+    if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+      Kakao.init('ec50c04f34491cd632352dd0f3e218c6');
+    }
+    if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+      Kakao.Share.createCustomButton({
+        container: '#kakaotalk-sharing-btn',
+        templateId: 129060
+      });
+    }
+  </script>
 </body>
 </html>
