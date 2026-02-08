@@ -1,63 +1,37 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <!-- ============================================================
-       기본 메타 태그
-       - charset: 문자 인코딩 (한글 지원)
-       - viewport: 반응형 웹을 위한 뷰포트 설정
-       - theme-color: 모바일 브라우저 상단바 색상
-       - description: 검색엔진 노출용 설명
-  ============================================================ -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#faf7f2" />
   <meta name="description" content="신랑 이인학 ♥ 신부 한예린, 2026년 4월 11일 토요일 오후 1시 30분, 빌라드지디 수서" />
 
-  <!-- ============================================================
-       Open Graph 메타 태그
-       - 카카오톡, 페이스북 등 SNS 공유 시 미리보기 정보
-       - og:url, og:image는 실제 배포 URL로 변경 필요
-  ============================================================ -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="이인학 ♥ 한예린 모바일 청첩장" />
   <meta property="og:description" content="2026년 4월 11일(토) 오후 1시 30분 · 빌라드지디 수서 5층 르씨엘홀" />
   <meta property="og:url" content="https://leeinhak.github.io/wedding-invitation/" />
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754" />
 
-  <!-- 카카오 SDK -->
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.7/kakao.min.js" integrity="sha384-tJkjbtDbvoxO+diRuDtwRO9JXR7pjWnfjfRn5ePUpl7e7RJCxKCwwnfqUAdXh53p" crossorigin="anonymous"></script>
 
   <title>모바일 청첩장</title>
-  <!-- Google Fonts: 세리프(제목용) + 본문용 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- 스타일시트 연결 -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- ============================================================
-       카카오톡 인앱 브라우저 안내 배너
-       - 카카오톡에서 열었을 때 외부 브라우저로 열기 유도
-  ============================================================ -->
+  <!-- 카카오톡 인앱 브라우저 안내 배너 -->
   <div id="inapp-banner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:10000; background:linear-gradient(135deg, #3a3632, #5c5347); color:#fff; padding:12px 16px; text-align:center; font-size:13px; box-shadow:0 2px 10px rgba(0,0,0,0.2);">
     <div style="margin-bottom:8px;">더 나은 화면으로 보시려면 외부 브라우저로 열어주세요</div>
     <button id="open-external-btn" style="background:#fff; color:#3a3632; border:none; padding:8px 20px; border-radius:20px; font-weight:700; font-size:12px; cursor:pointer;">외부 브라우저로 열기</button>
     <button id="close-banner-btn" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#fff; font-size:18px; cursor:pointer; opacity:0.7;">&times;</button>
   </div>
 
-  <!-- ============================================================
-       메인 페이지 컨테이너
-       - .page: 모바일 카드 형태의 최대 너비 제한 (520px)
-  ============================================================ -->
   <main class="page">
 
-    <!-- ============================================================
-         섹션 1: 커버 (Hero)
-         - 메인 배경 이미지와 신랑/신부 이름, 날짜, 장소 표시
-         - .scroll-hint: 아래로 스크롤 유도 애니메이션
-    ============================================================ -->
+    <!-- 커버 -->
     <section class="hero" aria-label="커버">
       <div class="hero-inner">
         <div class="kicker">Wedding Invitation</div>
@@ -66,7 +40,6 @@
           2026년 4월 11일 (토) 오후 1시 30분<br/>
           빌라드지디 수서 5층 르씨엘홀
         </div>
-        <!-- 스크롤 유도 아이콘 -->
         <div class="scroll-hint" aria-hidden="true"></div>
       </div>
     </section>
@@ -89,37 +62,29 @@
       </div>
     </div>
 
-    <!-- 본문 컨테이너 (좌우 패딩 적용) -->
     <div class="container">
 
-      <!-- ============================================================
-           섹션 2: 초대 인사말 (Intro)
-           - 초대 문구와 양가 부모님 정보
-           - .family-tree: 트리 구조로 부모님-신랑/신부 표시
-      ============================================================ -->
+      <!-- 초대 인사말 -->
       <section class="section center reveal" aria-label="초대합니다">
         <div class="kicker">Invitation</div>
         <h2 class="h1">초대합니다</h2>
         <div class="divider"></div>
-        <!-- 초대 인사말 텍스트 -->
         <p class="muted" style="margin: 0 auto; max-width: 48ch; font-size: 13px;">
           밝은 미소와 따뜻한 배려가 서로를 향한 확신이 되었고<br/>
           이제는 삶의 크고 작은 모든 부분까지도 <br/>
           함께 나눌 수있는 <u>동반자</u>가 되고자 합니다.<br/><br/>
 
           인생에서 가장 귀한 첫 걸음이 될 이 날을<br/>
-          소중한 분들이 오셔서 함께 축복해주시면<br/> 
+          소중한 분들이 오셔서 함께 축복해주시면<br/>
           감사한 마음 잊지않고 간직하며 살겠습니다.<br/>
         </p>
 
         <div style="height: 18px;"></div>
 
-        <!-- 양가 부모님 + 신랑/신부 트리 구조 -->
         <div class="family-tree">
           <!-- 신랑측 -->
           <div class="family-side">
             <div class="parents">
-              <!-- 아버지 -->
               <div class="parent">
                 <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334.jpg?alt=media&token=d641d1fe-3fb6-4cbd-a2a4-d89043953138" alt="아버지">
                 <div class="parent-info">
@@ -127,7 +92,6 @@
                   <b>이기동</b>
                 </div>
               </div>
-              <!-- 어머니 -->
               <div class="parent">
                 <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_01.jpg?alt=media&token=7e02cd4f-4c19-41ce-b138-06ef40720087" alt="어머니">
                 <div class="parent-info">
@@ -136,9 +100,7 @@
                 </div>
               </div>
             </div>
-            <!-- 연결선 -->
             <div class="tree-line"></div>
-            <!-- 신랑 -->
             <div class="person">
               <span class="role">신랑</span>
               <span class="name">이인학</span>
@@ -148,7 +110,6 @@
           <!-- 신부측 -->
           <div class="family-side">
             <div class="parents">
-              <!-- 아버지 -->
               <div class="parent">
                 <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_02.jpg?alt=media&token=29119cba-2a8c-4625-9d54-9f83c7949d20" alt="아버지">
                 <div class="parent-info">
@@ -156,7 +117,6 @@
                   <b>한상길</b>
                 </div>
               </div>
-              <!-- 어머니 -->
               <div class="parent">
                 <img class="parent-photo" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/KakaoTalk_20260203_234426334_03.jpg?alt=media&token=8e11527c-ecac-40b5-a4a3-203fd4d044b7" alt="어머니">
                 <div class="parent-info">
@@ -165,9 +125,7 @@
                 </div>
               </div>
             </div>
-            <!-- 연결선 -->
             <div class="tree-line"></div>
-            <!-- 신부 -->
             <div class="person">
               <span class="role">신부</span>
               <span class="name">한예린</span>
@@ -176,14 +134,10 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           RSVP 섹션 - 참석 의사 전달
-           - 버튼 클릭 시 모달 팝업
-           - 연락처 + 참석 인원수 입력
-      ============================================================ -->
+      <!-- 참석 의사 전달 -->
       <section class="section rsvp-section center reveal" aria-label="참석 의사 전달">
         <div class="kicker">RSVP</div>
-        <h2 class="h2">참석 의사 전달</h2>
+        <h2 class="h2">예식 참석 의사 전달</h2>
         <p class="muted rsvp-message">
           소중한 분들을 모시고 인생의 새로운 출발을 하려 합니다.<br/>
           <u>원활한 예식 준비를 위해 참석 여부</u>를 미리 알려주시면 감사하겠습니다.
@@ -191,18 +145,40 @@
         <button id="rsvp-btn" class="btn rsvp-open-btn">참석의사 전달하기</button>
       </section>
 
-      <!-- ============================================================
-           섹션 3: 예식 안내 (Wedding Info)
-           - 일시, 장소 정보
-           - 신랑/신부에게 전화 버튼
-      ============================================================ -->
+      <!-- 신랑측 식전 피로연 -->
+      <section class="section reveal" aria-label="신랑측 피로연 안내">
+        <div class="kicker center">Reception</div>
+        <h2 class="h2 center">신랑측 식전 피로연</h2>
+
+        <div class="grid">
+          <div class="card" style="font-size: 12px;">
+            <p class="muted center" style="margin: 0 0 14px; line-height: 1.6;">
+              먼 길의 부담을 덜어드리고자</br>
+              결혼식에 앞서 먼저 인사를 드리는 자리를 마련했습니다.</br>
+              따뜻한 마음으로 함께해 주시면 감사하겠습니다.
+            </p>
+            <div class="divider" style="margin-bottom: 14px;"></div>
+            <div class="info-row" style="font-size: 12px;">
+              <div class="label">일시</div>
+              <div><b>2026년 3월 28일(토) 오전 11시 ~ 오후 2시</b></div>
+            </div>
+            <div class="info-row" style="margin-top: 8px; font-size: 12px;">
+              <div class="label">장소</div>
+              <div><b>조가네진지상 별관</b><br/>
+                <span class="muted">충남 홍성군 홍성읍 내포로 88-1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 예식 안내 -->
       <section class="section reveal" aria-label="예식 안내">
         <div class="kicker center">Details</div>
         <h2 class="h2 center">예식 안내</h2>
 
         <div class="grid">
           <div class="card" style="font-size: 12px;">
-            <!-- 예식 안내 문구 -->
             <p class="muted center" style="margin: 0 0 14px; line-height: 1.6;">
               예식은 간소화된 기독교 예식으로 진행되며,<br/>
               1부 예식(5층)과 2부 연회(1층)로 나뉘어 진행됩니다.<br/>
@@ -210,12 +186,10 @@
               마음만 감사히 받겠습니다.
             </p>
             <div class="divider" style="margin-bottom: 14px;"></div>
-            <!-- 일시 정보 -->
             <div class="info-row" style="font-size: 12px;">
               <div class="label">일시</div>
               <div><b>2026년 4월 11일(토) 오후 1시 30분</b></div>
             </div>
-            <!-- 장소 정보 -->
             <div class="info-row" style="margin-top: 8px; font-size: 12px;">
               <div class="label">장소</div>
               <div>
@@ -223,7 +197,6 @@
                 <span class="muted">서울 강남구 밤고개로21길 79</span>
               </div>
             </div>
-            <!-- 예식 진행 안내 -->
             <div class="info-row" style="margin-top: 8px; font-size: 12px;">
               <div class="label">1부 예식</div>
               <div>오후 1시 30분 ~ 2시 00분 (5층 르씨엘홀)</div>
@@ -233,7 +206,6 @@
               <div>오후 2시 00분 ~ 4시 (1층 연회장)</div>
             </div>
 
-            <!-- 전화 버튼 (tel: 링크로 전화 앱 연결) -->
             <div class="btn-row">
               <a class="btn" href="tel:010-9466-2023">신랑에게 전화</a>
               <a class="btn secondary" href="tel:010-5485-8546">신부에게 전화</a>
@@ -242,21 +214,15 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 4: 달력 (Calendar)
-           - 결혼식 날짜가 표시된 달력
-           - D-day 카운트다운 (script.js에서 계산)
-      ============================================================ -->
+      <!-- 달력 -->
       <section class="section reveal" aria-label="달력">
         <div class="kicker center">Calendar</div>
         <h2 class="h2 center">일정</h2>
 
         <div class="card">
-          <!-- 달력 헤더 (년/월) -->
           <div class="center muted" style="margin-bottom: 6px; font-weight: 700;">
             2026년 4월
           </div>
-          <!-- 달력 테이블 -->
           <table class="calendar" aria-label="결혼식 달력">
             <thead>
               <tr>
@@ -265,12 +231,10 @@
             </thead>
             <tbody>
               <tr>
-                <!-- 4월 1일 = 수요일 -->
                 <td class="empty"></td><td class="empty"></td><td class="empty"></td>
                 <td>1</td><td>2</td><td>3</td><td>4</td>
               </tr>
               <tr>
-                <!-- .today: 결혼식 날짜 (4월 11일 토요일) 강조 -->
                 <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11 <span class="heart">♥</span></td>
               </tr>
               <tr>
@@ -280,53 +244,23 @@
                 <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
               </tr>
               <tr>
-                <!-- 4월은 30일까지 -->
                 <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td>
               </tr>
             </tbody>
           </table>
 
-          <!-- D-day 텍스트 (JavaScript로 동적 계산) -->
           <div class="center muted" style="margin-top: 8px;">
             <span id="dday-text"></span>
           </div>
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 5: 영상 (Video)
-           - YouTube 임베드
-           - autoplay, mute, loop 등 옵션으로 자동 반복 재생
-           - VIDEO_ID를 실제 YouTube 영상 ID로 교체 필요
-      ============================================================ -->
-      <!-- <section class="section" aria-label="영상">
-        <div class="kicker center">Video</div>
-        <h2 class="h2 center">영상</h2>
-
-        <div class="yt-wrap">
-          <iframe
-            class="yt"
-            src="https://www.youtube.com/embed/D0UW_Q-_E34?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=D0UW_Q-_E34"
-            title="YouTube video"
-            frameborder="0"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </section> -->
-
-      <!-- ============================================================
-           섹션 6: 갤러리 (Gallery)
-           - 사진 썸네일 그리드
-           - 클릭 시 라이트박스로 확대 (data-img 속성에 고해상도 URL)
-           - 이미지 URL을 실제 사진으로 교체 필요
-      ============================================================ -->
+      <!-- 갤러리 -->
       <section class="section reveal" aria-label="갤러리">
         <div class="kicker center">Gallery</div>
         <h2 class="h2 center">사진</h2>
 
         <div class="gallery" aria-label="사진 썸네일">
-          <!-- 각 버튼의 data-img: 라이트박스에서 보여줄 고해상도 이미지 URL -->
           <button class="thumb" type="button" data-img="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754"><img alt="gallery 1" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod0.jpg?alt=media&token=81ccd1ef-604c-4c37-abfb-deabcc9b0754"></button>
           <button class="thumb" type="button" data-img="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod2.jpg?alt=media&token=db141bd6-a9ad-47d9-8ecc-0bd1de1fa716"><img alt="gallery 3" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod2.jpg?alt=media&token=db141bd6-a9ad-47d9-8ecc-0bd1de1fa716"></button>
           <button class="thumb" type="button" data-img="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod1.jpg?alt=media&token=82ad558c-6978-475d-8f4d-26bd4bb14d35"><img alt="gallery 2" src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/yereen_mod1.jpg?alt=media&token=82ad558c-6978-475d-8f4d-26bd4bb14d35"></button>
@@ -344,12 +278,7 @@
         </p>
       </section>
 
-      <!-- ============================================================
-           라이트박스 모달
-           - 갤러리 이미지 클릭 시 전체 화면으로 확대 표시
-           - 이전/다음 버튼, 닫기 버튼, 현재 위치 카운터
-           - script.js에서 기능 구현
-      ============================================================ -->
+      <!-- 라이트박스 모달 -->
       <div id="lightbox" class="lightbox" aria-hidden="true">
         <button class="lightbox-close" type="button" aria-label="닫기">&times;</button>
         <button class="lightbox-prev" type="button" aria-label="이전">&#10094;</button>
@@ -358,23 +287,17 @@
         <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
       </div>
 
-      <!-- ============================================================
-           섹션 7: 오시는 길 (Location)
-           - 탭으로 카카오/네이버 지도 전환
-           - 주소 정보 및 길찾기/주소 복사 버튼
-      ============================================================ -->
+      <!-- 오시는 길 -->
       <section class="section reveal" aria-label="오시는 길">
         <div class="kicker center">Location</div>
         <h2 class="h2 center">오시는 길</h2>
 
         <div class="grid">
-          <!-- 카카오 지도 -->
           <div class="map">
             <div id="kakao-map" style="width:100%;height:100%;"></div>
           </div>
 
           <div class="card">
-            <!-- 주소 정보 -->
             <div class="info-row">
               <div class="label">도로명</div>
               <div>서울 강남구 밤고개로21길 79<br/><span class="muted">빌라드지디 수서 5층 르씨엘홀</span></div>
@@ -387,7 +310,6 @@
               <div class="label">우편번호</div>
               <div>06359</div>
             </div>
-            <!-- 지도 앱 연결 버튼 -->
             <div style="display:flex; justify-content:center; gap:16px; margin-top:14px;">
               <button type="button" onclick="openMapApp('naver')" style="width:44px; height:44px; border-radius:12px; border:1px solid #e8e0d4; background:#fff; cursor:pointer; padding:6px;" title="네이버 지도">
                 <img src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/naver_logo.png?alt=media&token=e134d86b-6984-49c8-8114-9b3bda2f2cf8" alt="네이버지도" style="width:100%; height:100%; object-fit:contain;">
@@ -407,10 +329,7 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 8: 교통 안내 (Transportation)
-           - 지하철, 버스, 주차 정보
-      ============================================================ -->
+      <!-- 교통 안내 -->
       <section class="section reveal" aria-label="교통 안내">
         <div class="kicker center">Guide</div>
         <h2 class="h2 center">교통 안내</h2>
@@ -431,7 +350,7 @@
             </div>
             <div class="info-row" style="margin-top: 10px;">
               <div class="label">주차</div>
-              <div>1. 건물 앞 공영주차장 (주차 협소 약 100대/2시간 무료주차/5분 100원) </div> 
+              <div>1. 건물 앞 공영주차장 (주차 협소 약 100대/2시간 무료주차/5분 100원) </div>
               <div class="label"></div>
               <div>2. 가든파이브 <u>서측(e-mart)입구 B5층 B구역</u> 주차 후 1층 5번/6번 게이트 앞 <u>셔틀버스 탑승(3분거리 / 3시간 무료주차)</u></div>
             </div>
@@ -440,18 +359,12 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 9: 마음 전하실 곳 (Account/Gift)
-           - 신랑측/신부측 계좌 정보
-           - <details> 태그로 접기/펼치기 구현
-           - 복사 버튼으로 계좌번호 클립보드 복사
-      ============================================================ -->
+      <!-- 마음 전하실 곳 -->
       <section class="section reveal" aria-label="마음 전하실 곳">
         <div class="kicker center">Gift</div>
         <h2 class="h2 center">마음 전하실 곳</h2>
 
         <div class="grid">
-          <!-- 신랑측 계좌 (접기/펼치기) -->
           <details>
             <summary>
               신랑측 계좌
@@ -478,7 +391,6 @@
             </div>
           </details>
 
-          <!-- 신부측 계좌 (접기/펼치기) -->
           <details>
             <summary>
               신부측 계좌
@@ -511,11 +423,7 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 10: 연락하기 (Contact/Share)
-           - 문자 보내기 버튼 (sms: 링크)
-           - 초대장 공유 버튼 (Web Share API 또는 링크 복사)
-      ============================================================ -->
+      <!-- 연락하기 -->
       <section class="section center reveal" aria-label="연락 및 공유">
         <div class="kicker">Contact</div>
         <h2 class="h2">연락하기</h2>
@@ -528,12 +436,7 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 11: 사진 업로드 (Photo Upload)
-           - Firebase Storage에 이미지 업로드
-           - 최대 10MB, 이미지 파일만 허용
-           - 업로드된 사진 목록 조회 (다운로드는 관리자만)
-      ============================================================ -->
+      <!-- 사진 업로드 -->
       <section class="section reveal" aria-label="사진 업로드">
         <div class="kicker center">Photo Upload</div>
         <h2 class="h2 center">결혼식 사진 올리기</h2>
@@ -560,41 +463,31 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           섹션 12: 방명록 (Guestbook)
-           - Firebase Firestore 연동
-           - 메시지 리스트 (실시간 업데이트)
-           - 닉네임/메시지 입력 폼
-      ============================================================ -->
+      <!-- 방명록 -->
       <section class="section reveal" aria-label="방명록">
         <div class="kicker center">Guest Book</div>
         <h2 class="h2 center">방명록</h2>
         <p class="muted center gb-subtitle">축하의 마음을 전해주세요</p>
 
-        <!-- 메시지 리스트 (Firebase에서 실시간으로 불러옴) -->
         <div class="gb-list-wrap">
           <div id="gbList" class="gb-list"></div>
         </div>
 
-        <!-- 메시지 작성 폼 -->
         <div class="gb-form-wrap">
           <input id="gbName" class="gb-input gb-input-full" placeholder="닉네임" maxlength="20">
           <textarea id="gbMsg" class="gb-input gb-textarea gb-input-full" placeholder="축하 메시지를 남겨주세요..." maxlength="300" rows="3"></textarea>
           <button class="btn gb-submit-btn" type="button" id="gbSubmit">등록</button>
-          <!-- 등록 상태 메시지 -->
           <div id="gbHint" class="muted center gb-hint"></div>
         </div>
       </section>
     </div>
 
-    <!-- 푸터 영역 (관리자 + 카카오 공유 + 저작권) -->
+    <!-- 푸터 -->
     <footer class="footer">
       <div class="footer-actions">
-        <!-- 카카오톡 공유 버튼 -->
         <button id="kakaotalk-sharing-btn" class="footer-btn kakao-share-btn" type="button" title="카카오톡 공유">
           <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="카카오톡 공유">
         </button>
-        <!-- 관리자 버튼 -->
         <details class="admin-toggle">
           <summary class="footer-btn admin-summary" title="관리자">관리자</summary>
           <div class="admin-popup">
@@ -612,18 +505,8 @@
     </footer>
   </main>
 
-  <!-- ============================================================
-       Firebase SDK 스크립트
-       - Firebase v10 모듈 방식 사용
-       - Firestore: RSVP, 방명록, 사진 메타데이터 저장/조회
-       - Auth: 관리자 로그인/로그아웃
-       - Storage: 사진 업로드
-
-       ⚠️ firebaseConfig는 본인의 Firebase 프로젝트 설정으로 교체 필요
-       - Firebase Console > 프로젝트 설정 > 내 앱 > 웹 앱에서 확인
-  ============================================================ -->
+  <!-- Firebase -->
   <script type="module">
-  // Firebase SDK 모듈 import
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
   import {
     getFirestore, collection, addDoc, serverTimestamp,
@@ -637,7 +520,6 @@
     getStorage, ref, uploadBytesResumable
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
-  // ⚠️ Firebase 설정 - 본인 프로젝트 값으로 교체 필요
   const firebaseConfig = {
     apiKey: "AIzaSyAnZ6dBPF6QvpvII-vNfj0h_N5vihIsW_Y",
     authDomain: "wedding-inhak-yereen.firebaseapp.com",
@@ -648,15 +530,12 @@
     measurementId: "G-XE3FPGVB0S",
   };
 
-  // Firebase 초기화
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);       // Firestore 데이터베이스
-  const auth = getAuth(app);          // Authentication
-  const storage = getStorage(app);    // Storage (사진 업로드용)
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const storage = getStorage(app);
 
-  // ============================================================
-  // RSVP (참석 의사 전달) 기능
-  // ============================================================
+  /* ── RSVP ── */
   const rsvpBtn = document.getElementById("rsvp-btn");
   const rsvpModal = document.getElementById("rsvp-modal");
   const rsvpForm = document.getElementById("rsvp-form");
@@ -667,14 +546,12 @@
   const rsvpCloseBtn = document.querySelector(".rsvp-close-btn");
   const rsvpOverlay = document.querySelector(".rsvp-modal-overlay");
 
-  // 모달 열기
   rsvpBtn.addEventListener("click", () => {
     rsvpModal.classList.remove("hidden");
     rsvpModal.setAttribute("aria-hidden", "false");
     rsvpName.focus();
   });
 
-  // 모달 닫기 함수
   function closeRsvpModal() {
     rsvpModal.classList.add("hidden");
     rsvpModal.setAttribute("aria-hidden", "true");
@@ -682,36 +559,20 @@
     rsvpHint.textContent = "";
   }
 
-  // 닫기 버튼 클릭
   rsvpCloseBtn.addEventListener("click", closeRsvpModal);
-
-  // 오버레이 클릭 시 닫기
   rsvpOverlay.addEventListener("click", closeRsvpModal);
-
-  // ESC 키로 닫기
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !rsvpModal.classList.contains("hidden")) {
-      closeRsvpModal();
-    }
+    if (e.key === "Escape" && !rsvpModal.classList.contains("hidden")) closeRsvpModal();
   });
 
-  // RSVP 제출
   rsvpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const name = rsvpName.value.trim();
     const phone = rsvpPhone.value.trim();
     const guestCount = parseInt(rsvpCount.value, 10);
 
-    // 유효성 검사
-    if (!phone) {
-      rsvpHint.textContent = "연락처를 입력해주세요.";
-      return;
-    }
-    if (!guestCount || guestCount < 1) {
-      rsvpHint.textContent = "참석 인원을 입력해주세요.";
-      return;
-    }
+    if (!phone) { rsvpHint.textContent = "연락처를 입력해주세요."; return; }
+    if (!guestCount || guestCount < 1) { rsvpHint.textContent = "참석 인원을 입력해주세요."; return; }
 
     rsvpHint.textContent = "전달 중...";
     rsvpForm.querySelector("button[type='submit']").disabled = true;
@@ -719,9 +580,7 @@
     try {
       await submitRsvp(name, phone, guestCount);
       rsvpHint.textContent = "참석 의사가 전달되었습니다. 감사합니다 ❤️";
-      setTimeout(() => {
-        closeRsvpModal();
-      }, 1500);
+      setTimeout(() => closeRsvpModal(), 1500);
     } catch (err) {
       rsvpHint.textContent = "전달 실패. 잠시 후 다시 시도해주세요.";
       console.error(err);
@@ -730,66 +589,39 @@
     }
   });
 
-  /**
-   * RSVP 데이터를 Firestore에 저장
-   * - 연락처(하이픈 제거)를 문서 ID로 사용
-   * - 같은 연락처로 재제출 시 덮어쓰기
-   */
   async function submitRsvp(name, phone, guestCount) {
-    const phoneKey = phone.replace(/-/g, ""); // 하이픈 제거하여 문서 ID로 사용
+    const phoneKey = phone.replace(/-/g, "");
     const phoneDoc = doc(db, "rsvp", phoneKey);
-
     const data = { phone, guestCount, createdAt: serverTimestamp() };
     if (name) data.name = name;
-
     await setDoc(phoneDoc, data);
   }
 
-  // ============================================================
-  // DOM 요소 참조
-  // ============================================================
-  // 방명록 입력 폼 요소
-  const gbName = document.getElementById("gbName");      // 닉네임 입력
-  const gbMsg = document.getElementById("gbMsg");        // 메시지 입력
-  const gbSubmit = document.getElementById("gbSubmit");  // 등록 버튼
-  const gbHint = document.getElementById("gbHint");      // 상태 메시지
-  const gbList = document.getElementById("gbList");      // 메시지 리스트
+  /* ── 방명록 ── */
+  const gbName = document.getElementById("gbName");
+  const gbMsg = document.getElementById("gbMsg");
+  const gbSubmit = document.getElementById("gbSubmit");
+  const gbHint = document.getElementById("gbHint");
+  const gbList = document.getElementById("gbList");
 
-  // 관리자 로그인 요소
   const adminEmail = document.getElementById("adminEmail");
   const adminPass = document.getElementById("adminPass");
   const adminLogin = document.getElementById("adminLogin");
   const adminLogout = document.getElementById("adminLogout");
   const adminState = document.getElementById("adminState");
 
-  // 관리자 로그인 상태
   let isAdmin = false;
 
-  // ============================================================
-  // 방명록 메시지 등록
-  // - Firestore의 'guestbook' 컬렉션에 문서 추가
-  // ============================================================
   gbSubmit.addEventListener("click", async () => {
     const name = gbName.value.trim();
     const message = gbMsg.value.trim();
-
-    // 유효성 검사
-    if (!name || !message) {
-      gbHint.textContent = "이름과 메시지를 입력해주세요.";
-      return;
-    }
+    if (!name || !message) { gbHint.textContent = "이름과 메시지를 입력해주세요."; return; }
 
     gbHint.textContent = "등록 중...";
     gbSubmit.disabled = true;
 
     try {
-      // Firestore에 메시지 저장
-      await addDoc(collection(db, "guestbook"), {
-        name,
-        message,
-        createdAt: serverTimestamp()  // 서버 타임스탬프 사용
-      });
-      // 입력 필드 초기화
+      await addDoc(collection(db, "guestbook"), { name, message, createdAt: serverTimestamp() });
       gbName.value = "";
       gbMsg.value = "";
       gbHint.textContent = "등록되었습니다 ❤️";
@@ -798,26 +630,17 @@
       console.error(e);
     } finally {
       gbSubmit.disabled = false;
-      // 1.8초 후 힌트 메시지 제거
       setTimeout(() => (gbHint.textContent = ""), 1800);
     }
   });
 
-  // ============================================================
-  // 방명록 실시간 리스트 조회
-  // - onSnapshot: Firestore 실시간 리스너 (데이터 변경 시 자동 업데이트)
-  // - 최신순 정렬, 최대 50개 조회
-  // ============================================================
   const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"), limit(50));
 
   onSnapshot(q, (snap) => {
     const items = [];
     snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
-
-    // 메시지 렌더링 또는 빈 상태 표시
     gbList.innerHTML = items.map(renderItem).join("") || "<div class='gb-empty'>아직 메시지가 없어요.<br>첫 번째로 축하해주세요!</div>";
 
-    // 관리자인 경우 삭제 버튼에 이벤트 연결
     if (isAdmin) {
       gbList.querySelectorAll("[data-del]").forEach(btn => {
         btn.addEventListener("click", async () => {
@@ -829,48 +652,22 @@
     }
   });
 
-  /**
-   * XSS 방지를 위한 HTML 이스케이프 함수
-   * - 사용자 입력값을 안전하게 HTML에 표시
-   */
   function escapeHtml(s) {
-    return String(s)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+    return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
   }
 
-  /**
-   * Firestore 타임스탬프를 날짜 문자열로 변환
-   * @param {Timestamp} ts - Firestore 타임스탬프
-   * @returns {string} YYYY.MM.DD 형식 문자열
-   */
   function formatDate(ts) {
     if (!ts) return "";
     const d = ts.toDate ? ts.toDate() : new Date(ts);
     if (isNaN(d)) return "";
-    const yy = d.getFullYear();
-    const mm = String(d.getMonth()+1).padStart(2,"0");
-    const dd = String(d.getDate()).padStart(2,"0");
-    return `${yy}.${mm}.${dd}`;
+    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
   }
 
-  /**
-   * 방명록 메시지 아이템 HTML 렌더링
-   * @param {Object} item - 메시지 데이터 {id, name, message, createdAt}
-   * @returns {string} HTML 문자열
-   */
   function renderItem(item) {
     const name = escapeHtml(item.name || "");
     const msg = escapeHtml(item.message || "").replaceAll("\n", "<br/>");
     const d = formatDate(item.createdAt);
-
-    // 관리자인 경우 삭제 버튼 표시
-    const delBtn = isAdmin
-      ? `<button class="copy" type="button" data-del="${item.id}">삭제</button>`
-      : "";
+    const delBtn = isAdmin ? `<button class="copy" type="button" data-del="${item.id}">삭제</button>` : "";
 
     return `
       <div class="gb-item">
@@ -883,19 +680,11 @@
     `;
   }
 
-  // ============================================================
-  // 관리자 로그인/로그아웃
-  // - Firebase Authentication 사용
-  // ============================================================
-
-  // 로그인 버튼 클릭
+  /* ── 관리자 ── */
   adminLogin.addEventListener("click", async () => {
     const email = adminEmail.value.trim();
     const pass = adminPass.value;
-    if (!email || !pass) {
-      adminState.textContent = "이메일/비밀번호를 입력하세요.";
-      return;
-    }
+    if (!email || !pass) { adminState.textContent = "이메일/비밀번호를 입력하세요."; return; }
     try {
       await signInWithEmailAndPassword(auth, email, pass);
     } catch (e) {
@@ -904,58 +693,36 @@
     }
   });
 
-  // 로그아웃 버튼 클릭
-  adminLogout.addEventListener("click", async () => {
-    await signOut(auth);
-  });
+  adminLogout.addEventListener("click", async () => { await signOut(auth); });
 
-  // 로그인 상태 변경 감지
   onAuthStateChanged(auth, (user) => {
     isAdmin = !!user;
     adminState.textContent = isAdmin ? `관리자 로그인됨: ${user.email}` : "관리자 로그아웃 상태";
   });
 
-  // ============================================================
-  // 사진 업로드
-  // - Firebase Storage에 이미지 업로드
-  // - Firestore에 메타데이터 저장 (업로더 이름, 파일명, URL, 날짜)
-  // ============================================================
+  /* ── 사진 업로드 ── */
   const upFile = document.getElementById("upFile");
   const upBtn = document.getElementById("upBtn");
   const upProgWrap = document.getElementById("upProgWrap");
   const upProg = document.getElementById("upProg");
   const upStatus = document.getElementById("upStatus");
   const upHint = document.getElementById("upHint");
-
-  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
   upBtn.addEventListener("click", async () => {
     const files = upFile.files;
+    if (!files || files.length === 0) { upHint.textContent = "사진을 선택해주세요."; return; }
 
-    // 파일 선택 확인
-    if (!files || files.length === 0) {
-      upHint.textContent = "사진을 선택해주세요.";
-      return;
-    }
-
-    // 파일 크기 및 타입 검사
     for (const file of files) {
-      if (file.size > MAX_FILE_SIZE) {
-        upHint.textContent = `${file.name}의 크기가 10MB를 초과합니다.`;
-        return;
-      }
-      if (!file.type.startsWith("image/")) {
-        upHint.textContent = `${file.name}은 이미지 파일이 아닙니다.`;
-        return;
-      }
+      if (file.size > MAX_FILE_SIZE) { upHint.textContent = `${file.name}의 크기가 10MB를 초과합니다.`; return; }
+      if (!file.type.startsWith("image/")) { upHint.textContent = `${file.name}은 이미지 파일이 아닙니다.`; return; }
     }
 
     upBtn.disabled = true;
     upProgWrap.style.display = "block";
     upHint.textContent = "";
 
-    let completed = 0;
-    let failed = 0;
+    let completed = 0, failed = 0;
     const total = files.length;
     const fileArray = Array.from(files);
 
@@ -964,57 +731,42 @@
       const currentFileNum = i + 1;
 
       try {
-        // 고유한 파일명 생성 (timestamp + index + random + 원본파일명)
         const timestamp = Date.now();
         const random = Math.random().toString(36).substring(2, 8);
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
         const filePath = `wedding_uploads/${timestamp}_${i}_${random}_${safeName}`;
         const storageRef = ref(storage, filePath);
 
-        // 업로드 시작 (진행률 추적)
         upStatus.textContent = `업로드 중... ${currentFileNum}/${total}`;
-
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        // 업로드 완료 대기
         await new Promise((resolve, reject) => {
           uploadTask.on("state_changed",
             (snapshot) => {
-              // 진행률 업데이트
               const fileProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               const overallProgress = ((completed + fileProgress / 100) / total) * 100;
               upProg.style.width = overallProgress + "%";
               upStatus.textContent = `업로드 중... ${currentFileNum}/${total} (${Math.round(fileProgress)}%)`;
             },
-            (error) => {
-              reject(error);
-            },
-            () => {
-              resolve();
-            }
+            (error) => reject(error),
+            () => resolve()
           );
         });
 
-        // 업로드 성공
         completed++;
-
       } catch (e) {
         console.error("업로드 실패:", file.name, e);
         failed++;
       }
 
-      // 진행률 업데이트
       upProg.style.width = ((completed + failed) / total * 100) + "%";
     }
 
-    // 완료
     upProg.style.width = "100%";
     upStatus.textContent = "업로드 완료!";
-    if (failed > 0) {
-      upHint.textContent = `${completed}개 성공, ${failed}개 실패`;
-    } else {
-      upHint.textContent = `${completed}개의 사진이 업로드되었습니다 ❤️`;
-    }
+    upHint.textContent = failed > 0
+      ? `${completed}개 성공, ${failed}개 실패`
+      : `${completed}개의 사진이 업로드되었습니다 ❤️`;
     upFile.value = "";
     upBtn.disabled = false;
 
@@ -1024,17 +776,12 @@
     }, 2000);
   });
 
-</script>
+  </script>
 
-  <!-- 카카오 지도 SDK -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ec50c04f34491cd632352dd0f3e218c6&autoload=false&libraries=services"></script>
-
-  <!-- 기타 JavaScript (D-day, 클립보드, 공유, 라이트박스) -->
   <script src="script.js"></script>
 
-  <!-- 카카오톡 공유 버튼 초기화 -->
   <script>
-    // 카카오 SDK 초기화 및 공유 버튼 설정
     if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
       Kakao.init('ec50c04f34491cd632352dd0f3e218c6');
     }
