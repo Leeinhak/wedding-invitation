@@ -781,6 +781,127 @@ details[open] .chev {
 }
 
 /* =========================
+   11-b) Guestbook Edit/Delete
+   - 방명록 수정/삭제 관련 스타일
+========================= */
+
+/* 수정/삭제 버튼 */
+.gb-item-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.gb-action-btn {
+  padding: 4px 8px;
+  border: 1px solid #ddd4c8;
+  border-radius: 8px;
+  background: #faf7f2;
+  color: #8c8279;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.gb-action-btn:hover {
+  background: #f0ebe4;
+  color: #5c5347;
+}
+.gb-action-del:hover {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+/* 인라인 편집 모드 */
+.gb-edit-textarea {
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+.gb-edit-actions {
+  display: flex;
+  gap: 6px;
+}
+.gb-edit-actions .btn {
+  padding: 8px 14px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+/* 비밀번호 확인 모달 */
+.gb-pw-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.gb-pw-modal.hidden {
+  display: none;
+}
+.gb-pw-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+.gb-pw-content {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px 20px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gb-pw-title {
+  font-family: "Noto Serif KR", serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 4px;
+  color: #1a1a1a;
+}
+.gb-pw-btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.gb-pw-btn-row .btn {
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+/* 토스트 알림 */
+.gb-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(44, 44, 44, 0.92);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 10001;
+  animation: modalFadeIn 0.2s ease;
+  pointer-events: none;
+}
+.gb-toast-hide {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* =========================
    12) Footer & Admin Section
    - 푸터 영역 (카카오 공유 + 관리자 + 저작권)
 ========================= */
