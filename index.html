@@ -29,6 +29,18 @@
     <button id="close-banner-btn" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#fff; font-size:18px; cursor:pointer; opacity:0.7;">&times;</button>
   </div>
 
+  <!-- BGM -->
+  <audio id="bgm" loop preload="auto">
+    <source src="https://firebasestorage.googleapis.com/v0/b/wedding-inhak-yereen/o/music_1.mp3?alt=media&token=0cd4388e-cfb2-4f69-9fca-2531d4e96f2e" type="audio/mpeg">
+  </audio>
+  <button id="bgm-toggle" class="bgm-btn" aria-label="배경음악 켜기/끄기">
+    <svg class="bgm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+    <circle cx="18" cy="16" r="3"/>
+    </svg>
+  </button>
+
   <main class="page">
 
     <!-- 커버 -->
@@ -531,6 +543,56 @@
       <div class="footer-copyright">© 2026 Wedding Invitation</div>
     </footer>
   </main>
+
+  <!-- BGM -->
+  <script>
+  (function() {
+    const bgm = document.getElementById("bgm");
+    const btn = document.getElementById("bgm-toggle");
+    let started = false;
+
+    function play() {
+      bgm.play().then(() => {
+        btn.classList.add("playing");
+        btn.classList.remove("paused");
+      }).catch(() => {});
+    }
+
+    function pause() {
+      bgm.pause();
+      btn.classList.remove("playing");
+      btn.classList.add("paused");
+    }
+
+    // 첫 터치/클릭 시 자동 재생
+    function onFirstInteraction() {
+      if (started) return;
+      started = true;
+      play();
+      document.removeEventListener("click", onFirstInteraction);
+      document.removeEventListener("touchstart", onFirstInteraction);
+    }
+    document.addEventListener("click", onFirstInteraction);
+    document.addEventListener("touchstart", onFirstInteraction);
+
+    // 토글 버튼
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!started) {
+        started = true;
+        play();
+        document.removeEventListener("click", onFirstInteraction);
+        document.removeEventListener("touchstart", onFirstInteraction);
+        return;
+      }
+      if (bgm.paused) {
+        play();
+      } else {
+        pause();
+      }
+    });
+  })();
+  </script>
 
   <!-- Firebase -->
   <script type="module">

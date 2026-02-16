@@ -19,6 +19,7 @@
  * 12) Admin Section - 관리자 영역
  * 13) YouTube Video - 영상 임베드
  * 14) Footer - 푸터
+ * 15) BGM - 배경음악 플로팅 버튼
  */
 
 /* =========================
@@ -1650,4 +1651,52 @@ details[open] .chev {
     transform: none;
     transition: none;
   }
+}
+
+/* =========================
+   15) BGM
+   - 배경음악 플로팅 버튼
+========================= */
+.bgm-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a5248;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bgm-btn:active {
+  transform: scale(0.92);
+}
+
+.bgm-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* 재생 중 회전 애니메이션 */
+.bgm-btn.playing .bgm-icon {
+  animation: bgm-spin 2s linear infinite;
+}
+
+/* 일시정지 상태 아이콘 흐리게 */
+.bgm-btn.paused {
+  opacity: 0.5;
+}
+
+@keyframes bgm-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
