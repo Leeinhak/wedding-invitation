@@ -1523,6 +1523,51 @@ details[open] .chev {
   gap: 12px;
 }
 
+/* RSVP 하객 구분 */
+.rsvp-side-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rsvp-side-label {
+  font-size: 14px;
+  color: #5a5248;
+  font-weight: 500;
+}
+
+.rsvp-side-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.rsvp-side-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd4c8;
+  background: #faf7f2;
+  cursor: pointer;
+  font-size: 15px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.rsvp-side-option:has(input:checked) {
+  border-color: #2c2c2c;
+  background: #fff;
+}
+
+.rsvp-side-option input[type="radio"] {
+  accent-color: #2c2c2c;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
 /* RSVP 입력 필드 */
 .rsvp-input {
   width: 100%;

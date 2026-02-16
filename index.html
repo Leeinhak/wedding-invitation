@@ -50,6 +50,19 @@
       <div class="rsvp-modal-content">
         <h3 class="rsvp-modal-title">참석 의사 전달</h3>
         <form id="rsvp-form" class="rsvp-form">
+          <div class="rsvp-side-group">
+            <span class="rsvp-side-label">하객 구분</span>
+            <div class="rsvp-side-options">
+              <label class="rsvp-side-option">
+                <input type="radio" name="rsvp-side" value="groom">
+                <span>신랑측</span>
+              </label>
+              <label class="rsvp-side-option">
+                <input type="radio" name="rsvp-side" value="bride">
+                <span>신부측</span>
+              </label>
+            </div>
+          </div>
           <input type="text" id="rsvp-name" class="rsvp-input" placeholder="성함 (선택)" maxlength="20">
           <input type="tel" id="rsvp-phone" class="rsvp-input" placeholder="연락처 (010-0000-0000)" required>
           <input type="number" id="rsvp-count" class="rsvp-input" placeholder="참석 인원" min="1" required>
@@ -581,10 +594,12 @@
 
   rsvpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const sideEl = rsvpForm.querySelector('input[name="rsvp-side"]:checked');
     const name = rsvpName.value.trim();
     const phone = rsvpPhone.value.trim();
     const guestCount = parseInt(rsvpCount.value, 10);
 
+    if (!sideEl) { rsvpHint.textContent = "신랑측/신부측을 선택해주세요."; return; }
     if (!phone) { rsvpHint.textContent = "연락처를 입력해주세요."; return; }
     if (!guestCount || guestCount < 1) { rsvpHint.textContent = "참석 인원을 입력해주세요."; return; }
 
@@ -592,7 +607,7 @@
     rsvpForm.querySelector("button[type='submit']").disabled = true;
 
     try {
-      await submitRsvp(name, phone, guestCount);
+      await submitRsvp(name, phone, guestCount, sideEl.value);
       rsvpHint.textContent = "참석 의사가 전달되었습니다. 감사합니다 ❤️";
       setTimeout(() => closeRsvpModal(), 1500);
     } catch (err) {
@@ -603,10 +618,10 @@
     }
   });
 
-  async function submitRsvp(name, phone, guestCount) {
+  async function submitRsvp(name, phone, guestCount, side) {
     const phoneKey = phone.replace(/-/g, "");
     const phoneDoc = doc(db, "rsvp", phoneKey);
-    const data = { phone, guestCount, createdAt: serverTimestamp() };
+    const data = { phone, guestCount, side, createdAt: serverTimestamp() };
     if (name) data.name = name;
     await setDoc(phoneDoc, data);
   }
